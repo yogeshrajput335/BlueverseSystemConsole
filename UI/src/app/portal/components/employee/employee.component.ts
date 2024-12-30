@@ -6,7 +6,6 @@ import { ProductService } from 'src/app/demo/service/product.service';
 
 @Component({
   selector: 'app-employee',
-  providers: [MessageService],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.scss'
 })

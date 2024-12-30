@@ -17,6 +17,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { EmployeeComponent } from './employee/employee.component';
 import { UserComponent } from './user/user.component';
+import { AttendenceComponent } from './attendence/attendence.component';
 
 @NgModule({
     imports: [
@@ -38,6 +39,6 @@ import { UserComponent } from './user/user.component';
         InputNumberModule,
         DialogModule
     ],
-    declarations:[EmployeeComponent,UserComponent]
+    declarations:[EmployeeComponent,UserComponent,AttendenceComponent]
 })
 export class PortalModule { }

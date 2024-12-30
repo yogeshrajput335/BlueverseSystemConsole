@@ -16,6 +16,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { EmployeeComponent } from './employee/employee.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
     imports: [
@@ -37,6 +38,6 @@ import { EmployeeComponent } from './employee/employee.component';
         InputNumberModule,
         DialogModule
     ],
-    declarations:[EmployeeComponent]
+    declarations:[EmployeeComponent,UserComponent]
 })
 export class PortalModule { }

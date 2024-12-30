@@ -21,13 +21,13 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'BlueVerse Systems',
+                label: 'Blueverse Systems',
                 items: [
                     { label: 'Employees', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
                     { label: 'Users', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input'] },
                     { label: 'Attendence', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
                     { label: 'Leaves', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate'] },
-                    { label: 'PayRoll', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
+                    { label: 'Payroll', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
                 ]
             },
             {

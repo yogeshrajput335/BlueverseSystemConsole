@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const routes = require('./routes/routes');
+const employees = require('./routes/employees');
 var cors = require('cors')
 const mongoString = process.env.DATABASE_URL;
 
@@ -23,7 +23,7 @@ let corsOptions = {
 }
 app.use(cors(corsOptions))
 app.use(express.json());
-app.use('/api', routes)
+app.use('/api', employees)
 
 
 app.listen(3000, () => {

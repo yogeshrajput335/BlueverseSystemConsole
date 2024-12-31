@@ -31,13 +31,10 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
-                        <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-                        <th>Image</th>
-                        <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
-                        <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
-                        <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
-                        <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                        <th pSortableColumn="code">Name <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="name">Gender <p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="price">Phone number <p-sortIcon field="price"></p-sortIcon></th>
+                        <th pSortableColumn="category">Email ID <p-sortIcon field="category"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
@@ -46,29 +43,20 @@
                         <td>
                             <p-tableCheckbox [value]="product"></p-tableCheckbox>
                         </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Name</span>
                             {{product.code || product.id}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Name</span>
+                            <span class="p-column-title">Gender</span>
                             {{product.name}}
                         </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
-                            <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" />
-                        </td>
                         <td style="width:14%; min-width:8rem;">
-                            <span class="p-column-title">Price</span>
+                            <span class="p-column-title">Phone Number</span>
                             {{product.price | currency:'USD'}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
+                            <span class="p-column-title">Email ID</span>
                             {{product.category}}
-                        </td>
-                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Reviews</span>
-                            <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
-                        </td>
-                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Status</span>
-                            <span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span>
                         </td>
                         <td>
                             <div class="flex">

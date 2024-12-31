@@ -4,7 +4,8 @@ import { LayoutService } from "./service/app.layout.service";
 
 @Component({
     selector: 'app-topbar',
-    templateUrl: './app.topbar.component.html'
+    templateUrl: './app.topbar.component.html',
+    styleUrl:'./app.topbar.component.css',
 })
 export class AppTopBarComponent {
 

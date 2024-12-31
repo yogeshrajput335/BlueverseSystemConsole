@@ -19,10 +19,13 @@ import { EmployeeComponent } from './employee/employee.component';
 import { UserComponent } from './user/user.component';
 import { AttendenceComponent } from './attendence/attendence.component';
 import { LeavesComponent } from '../component/leaves/leaves.component';
+import { HttpClientModule } from '@angular/common/http';
+import { EmployeeService } from '../services/employee/employee.service';
 
 @NgModule({
     imports: [
         CommonModule,
+        HttpClientModule,
         FormsModule,
         PortalRoutingModule,
         TableModule,
@@ -40,6 +43,7 @@ import { LeavesComponent } from '../component/leaves/leaves.component';
         InputNumberModule,
         DialogModule
     ],
-    declarations:[EmployeeComponent,UserComponent,AttendenceComponent,LeavesComponent]
+    declarations:[EmployeeComponent,UserComponent,AttendenceComponent,LeavesComponent],
+    providers:[EmployeeService]
 })
 export class PortalModule { }

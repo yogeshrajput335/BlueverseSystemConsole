@@ -13,7 +13,7 @@ import { EmployeeService } from '../../services/employee/employee.service';
 })
 export class EmployeeComponent implements OnInit {
 
-  productDialog: boolean = false;
+  employeeDialog: boolean = false;
 
   deleteProductDialog: boolean = false;
 
@@ -21,7 +21,7 @@ export class EmployeeComponent implements OnInit {
 
   employees: Employee[] = [];
 
-  product: Product = {};
+  employee: Employee = {};
 
   selectedProducts: Product[] = [];
 
@@ -38,7 +38,7 @@ export class EmployeeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.employeeService.getAllEmployees().subscribe((data:any) => this.employees = data);
+    this.loadGrid();
 
       this.cols = [
           { field: 'product', header: 'Product' },
@@ -55,24 +55,28 @@ export class EmployeeComponent implements OnInit {
     //   ];
   }
 
+  loadGrid(){
+    this.employeeService.getAllEmployees().subscribe((data:any) => this.employees = data);
+  }
+
   openNew() {
-      this.product = {};
+      this.employee = {};
       this.submitted = false;
-      this.productDialog = true;
+      this.employeeDialog = true;
   }
 
   deleteSelectedProducts() {
       this.deleteProductsDialog = true;
   }
 
-  editProduct(product: Product) {
-      this.product = { ...product };
-      this.productDialog = true;
+  editEmployee(employee: Employee) {
+      this.employee = { ...employee };
+      this.employeeDialog = true;
   }
 
-  deleteProduct(product: Product) {
+  deleteProduct(employee: Employee) {
       this.deleteProductDialog = true;
-      this.product = { ...product };
+      this.employee = { ...employee };
   }
 
   confirmDeleteSelected() {
@@ -90,32 +94,32 @@ export class EmployeeComponent implements OnInit {
   }
 
   hideDialog() {
-      this.productDialog = false;
+      this.employeeDialog = false;
       this.submitted = false;
   }
 
-  saveProduct() {
+  saveEmployee() {
       this.submitted = true;
 
-      if (this.product.name?.trim()) {
-          if (this.product.id) {
-              // @ts-ignore
-              this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-              //this.products[this.findIndexById(this.product.id)] = this.product;
-              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+      if (this.employee.Name?.trim()) {
+          if (this.employee._id) {
+                this.employeeService.updateEmployees(this.employee).subscribe(data=>{
+                this.loadGrid();
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Employee Updated', life: 3000 });
+              })
+              
           } else {
-              this.product.id = this.createId();
-              this.product.code = this.createId();
-              this.product.image = 'product-placeholder.svg';
-              // @ts-ignore
-              this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-              //this.products.push(this.product);
-              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+              //this.employee._id = this.createId();
+              this.employeeService.addEmployees(this.employee).subscribe(data=>{
+                this.loadGrid();
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Employee Created', life: 3000 });
+              })
+              
           }
 
           //this.products = [...this.products];
-          this.productDialog = false;
-          this.product = {};
+          this.employeeDialog = false;
+          this.employee = {};
       }
   }
 

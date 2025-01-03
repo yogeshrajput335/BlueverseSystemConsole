@@ -12,6 +12,7 @@ import { PayrollService } from '../../services/payroll/payroll.service';
   styleUrl: './pay-roll.component.scss'
 })
 export class PayRollComponent implements OnInit {
+  _id: any;
   payrollDialog: boolean = false;
 
   deleteProductDialog: boolean = false;
@@ -68,14 +69,15 @@ export class PayRollComponent implements OnInit {
     this.deleteProductsDialog = true;
   }
 
-  editEmployee(payroll: Payroll) {
+  editPayroll(payroll: Payroll) {
     this.payroll = { ...payroll };
     this.payrollDialog = true;
   }
 
-  deleteProduct(payroll: Payroll) {
+  deletePayroll(_id: any) {
+    this._id = _id
     this.deleteProductDialog = true;
-    this.payroll = { ...payroll };
+
   }
 
   confirmDeleteSelected() {
@@ -86,11 +88,25 @@ export class PayRollComponent implements OnInit {
   }
 
   confirmDelete() {
-    //   this.deleteProductDialog = false;
-    //   this.products = this.products.filter(val => val.id !== this.product.id);
-    //   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-    //   this.product = {};
+    this.deleteProductDialog = false;
+    this.payrollService.deletePayroll(this._id).subscribe(
+      (data: any) => {
+        this.loadGrid();
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Payroll Deleted', life: 3000 });
+      },
+      (error) => {
+        console.error('Error deleting payroll:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Payroll Deletion Failed',
+          life: 3000
+        });
+      }
+    );
   }
+
+
 
   hideDialog() {
     this.payrollDialog = false;

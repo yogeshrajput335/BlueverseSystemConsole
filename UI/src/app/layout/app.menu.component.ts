@@ -27,7 +27,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Users', icon: 'pi pi-fw pi-check-square', routerLink: ['/portal/user'] },
                     { label: 'Attendence', icon: 'pi pi-fw pi-bookmark', routerLink: ['/portal/attendence'] },
                     { label: 'Leaves', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/Leaves'] },
-                    { label: 'Payroll', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
+                    { label: 'Payroll', icon: 'pi pi-fw pi-table', routerLink: ['/portal/Payroll'] },
                 ]
             },
             {

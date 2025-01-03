@@ -24,4 +24,4 @@ const dataSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('User', dataSchema)
+module.exports = mongoose.model('Payroll', dataSchema)

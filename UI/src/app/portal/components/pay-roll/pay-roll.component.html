@@ -42,8 +42,8 @@
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
                         <th pSortableColumn="Name">Name <p-sortIcon field="Name"></p-sortIcon></th>
-                        <th pSortableColumn="Month">Month <p-sortIcon field="Month"></p-sortIcon></th>
-                        <th pSortableColumn="Year">year <p-sortIcon field="Year"></p-sortIcon>
+                        <th pSortableColumn="Month">SatringDays <p-sortIcon field="Month"></p-sortIcon></th>
+                        <th pSortableColumn="Year">EndingDays <p-sortIcon field="Year"></p-sortIcon>
                         </th>
                         <th pSortableColumn="TotalDays">Total days <p-sortIcon field="TotalDays"></p-sortIcon></th>
                         <th pSortableColumn="WorkingDays">Working days <p-sortIcon field="WorkingDays"></p-sortIcon>
@@ -67,13 +67,13 @@
                             <span class="p-column-title">year</span>
                             {{pay.Year}}
                         </td>
-                        <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Total days</span>
-                            {{pay.TotalDays}}
-                        </td>
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Working days</span>
                             {{pay.WorkingDays}}
+                        </td>
+                        <td style="width:20%; min-width:10rem;">
+                            <span class="p-column-title">Total days</span>
+                            {{pay.TotalDays}}
                         </td>
                         <td>
                             <div class="flex">
@@ -98,18 +98,23 @@
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.Name">Name is required.</small>
                 </div>
                 <div class="field">
-                    <label class="mb-3">Month</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="payroll.Month" required autofocus
+                    <label class="mb-3">SatringDays</label>
+                    <input type="date" pInputText id="name" [(ngModel)]="payroll.Month" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.Month}" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.Month">month is
                         required.</small>
                 </div>
                 <div class="field">
-                    <label for="name">year</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="payroll.Year" required autofocus
+                    <label for="name">EndingDays</label>
+                    <input type="date" pInputText id="name" [(ngModel)]="payroll.Year" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.Year}" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.Year">year is
                         required.</small>
+                </div>
+                <div class="field">
+                    <label for="description">Working Days</label>
+                    <textarea id="description" pInputTextarea [(ngModel)]="payroll.WorkingDays" required rows="3"
+                        cols="20"></textarea>
                 </div>
                 <div class="field">
                     <label for="name">Total days</label>
@@ -118,11 +123,7 @@
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.TotalDays">Total days is
                         required.</small>
                 </div>
-                <div class="field">
-                    <label for="description">Working Days</label>
-                    <textarea id="description" pInputTextarea [(ngModel)]="payroll.WorkingDays" required rows="3"
-                        cols="20"></textarea>
-                </div>
+
             </ng-template>
 
             <ng-template pTemplate="footer">

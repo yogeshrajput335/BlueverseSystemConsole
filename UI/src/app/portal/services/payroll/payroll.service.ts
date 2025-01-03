@@ -18,8 +18,8 @@ export class PayrollService {
   updatePayroll(payroll) {
     return this.httpClient.patch("http://localhost:3000/api/update-payroll/" + payroll._id, payroll);
   }
-  deletePayroll(payroll) {
-    return this.httpClient.delete("http://localhost:3000/api/update-payroll", payroll);
+  deletePayroll(id) {
+    return this.httpClient.delete("http://localhost:3000/api/delete-payroll/" + id);
   }
 }
 

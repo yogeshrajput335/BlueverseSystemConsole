@@ -3,28 +3,21 @@ const { type } = require('os');
 
 const dataSchema = new mongoose.Schema({
 
-    Name: {
+    userName: {
         required: true,
         type: String
     },
-    EmailId: {
+    emailId: {
         required: true,
         type: String
     },
-    Gender: {
+    password: {
         required: true,
         type: String
     },
-    Address: {
-        required: true,
-        type: String
-    },
-    PhoneNumber: {
-        required: true,
-        type: String
-    }
+
 
 
 })
 
-module.exports = mongoose.model('User', dataSchema)
+module.exports = mongoose.model('Userid', dataSchema)

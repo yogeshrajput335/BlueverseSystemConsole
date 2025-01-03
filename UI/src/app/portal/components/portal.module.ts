@@ -22,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmployeeService } from '../services/employee/employee.service';
 import { NgModel } from '@angular/forms';
 import { PayRollComponent } from './pay-roll/pay-roll.component';
-import { UserService } from '../services/user.service';
+import { UserService } from '../services/user/user.service';
 import { PayrollService } from '../services/payroll/payroll.service';
 
 @NgModule({

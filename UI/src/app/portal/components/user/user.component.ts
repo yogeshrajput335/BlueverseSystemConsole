@@ -4,13 +4,14 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { User } from '../../models/user';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user/user.service';
 @Component({
     selector: 'app-user',
     templateUrl: './user.component.html',
     styleUrl: './user.component.scss'
 })
 export class UserComponent implements OnInit {
+    _id: any;
     userDialog: boolean = false;
 
     deleteProductDialog: boolean = false;
@@ -54,11 +55,11 @@ export class UserComponent implements OnInit {
     }
 
     loadGrid() {
-        this.userService.getAllUser().subscribe((data: any) => this.users = data);
+        this.userService.getAllUser().subscribe((data: User[]) => this.users = data);
     }
 
     openNew() {
-        this.user = {};
+        this.user = { userName: '', emailId: '', password: '' };
         this.submitted = false;
         this.userDialog = true;
     }
@@ -67,14 +68,15 @@ export class UserComponent implements OnInit {
         this.deleteProductsDialog = true;
     }
 
-    editEmployee(user: User) {
+    editUser(user: User) {
         this.user = { ...user };
         this.userDialog = true;
     }
 
-    deleteProduct(user: User) {
+    deleteUser(_id: any) {
+        this._id = _id;
         this.deleteProductDialog = true;
-        this.user = { ...user };
+
     }
 
     confirmDeleteSelected() {
@@ -84,22 +86,64 @@ export class UserComponent implements OnInit {
         //   this.selectedProducts = [];
     }
 
-    confirmDelete() {
-        //   this.deleteProductDialog = false;
-        //   this.products = this.products.filter(val => val.id !== this.product.id);
-        //   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-        //   this.product = {};
-    }
 
+    confirmDelete() {
+        this.deleteProductDialog = false;
+        if (this._id) {
+            this.userService.deleteUser(this._id).subscribe(() => {
+                this.loadGrid();
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
+            });
+        }
+        (error) => {
+            console.error('Error deleting user:', error);
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Could not delete user',
+                life: 3000,
+            });
+
+        }
+    }
     hideDialog() {
         this.userDialog = false;
         this.submitted = false;
     }
+    // saveUser() {
+    //     this.submitted = true;
 
+    //     if (this.user.userName?.trim() && this.user.emailId?.trim() && this.user.password?.trim()) {
+    //         console.log('Saving user:', this.user); // Add this
+    //         if (this.user._id) {
+    //             this.userService.updateUser(this.user).subscribe(
+    //                 () => {
+    //                     this.loadGrid();
+    //                     this.messageService.add({
+    //                         severity: 'success',
+    //                         summary: 'Successful',
+    //                         detail: 'User Updated',
+    //                         life: 3000,
+    //                     });
+    //                 },
+    //             );
+    //         } else {
+    //             this.userService.addUser(this.user).subscribe(
+    //                 () => {
+    //                     this.loadGrid();
+    //                     this.messageService.add({
+    //                         severity: 'success',
+    //                         summary: 'Successful',
+    //                         detail: 'User Created',
+    //                         life: 3000,
+    //                     });
+
+    //                 });
+    //         }
     saveUser() {
         this.submitted = true;
 
-        if (this.user.UserName?.trim()) {
+        if (this.user.userName?.trim()) {
             if (this.user._id) {
                 this.userService.updateUser(this.user).subscribe(data => {
                     this.loadGrid();
@@ -110,7 +154,7 @@ export class UserComponent implements OnInit {
                 //this.employee._id = this.createId();
                 this.userService.addUser(this.user).subscribe(data => {
                     this.loadGrid();
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Created', life: 3000 });
+                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Usere Created', life: 3000 });
                 })
 
             }

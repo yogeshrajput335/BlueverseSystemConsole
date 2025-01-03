@@ -19,8 +19,8 @@ export class UserService {
   updateUser(user) {
     return this.httpClient.patch("http://localhost:3000/api/update-user/" + user._id, user);
   }
-  deleteUser(user) {
-    return this.httpClient.delete("http://localhost:3000/api/update-user", user);
+  deleteUser(id) {
+    return this.httpClient.delete("http://localhost:3000/api/delete-user/" + id);
   }
 }
 

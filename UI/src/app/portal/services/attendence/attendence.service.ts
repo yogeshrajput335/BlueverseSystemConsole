@@ -15,9 +15,12 @@ export class AttendenceService {
     }
     updateAttendence(attendence){
       return this.httpClient.patch("http://localhost:3000/api/update-attendence/"+attendence._id,attendence);
-    }
-}  
 
+    }
+  deleteAttendence(id){
+    return this.httpClient.delete("http://localhost:3000/api/delete-attendence/"+id);
+  }
+}
 
 
 

@@ -5,16 +5,17 @@ import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { AttendenceService } from '../../services/attendence/attendence.service';
 import { Attendence } from '../../models/attendence';
-import { Employee } from '../../models/employee';
-
 
 @Component({
   selector: 'app-attendence',
   templateUrl: './attendence.component.html',
   styleUrl: './attendence.component.scss'
 })
-export class AttendenceComponent {
-  attendenceDialog: boolean = false;
+export class AttendenceComponent implements OnInit{
+
+    _id:any;
+    
+    attendenceDialog: boolean = false;
   
     deleteProductDialog: boolean = false;
   
@@ -96,10 +97,11 @@ export class AttendenceComponent {
     }
   
     confirmDelete() {
-        // this.deleteProductDialog = false;
-        // this.products = this.products.filter(val => val.id !== this.product.id);
-        // this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-        // this.product = {};
+        this.deleteProductDialog = false;
+        this.attendenceService.deleteAttendence(this._id).subscribe((data:any) => {
+            this.loadGrid();
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Attendence Deleted', life: 3000 });
+        });
     }
   
     hideDialog() {
@@ -110,7 +112,7 @@ export class AttendenceComponent {
     saveAttendence() {
         this.submitted = true;
   
-            if (this.attendence.name?.trim()) {
+            if (this.attendence.Employee_Name?.trim()) {
                 if (this.attendence._id) {
                       this.attendenceService.updateAttendence(this.attendence).subscribe(data=>{
                       this.loadGrid();
@@ -119,7 +121,7 @@ export class AttendenceComponent {
             } else {
                 this.attendenceService.addAttendence(this.attendence).subscribe(data=>{
                     this.loadGrid();
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Employee Created', life: 3000 });
+                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Attendence Created', life: 3000 });
                   })
             }
   

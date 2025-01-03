@@ -16,7 +16,7 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="attendence" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="attendence" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['Year','Employee_Name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Manage Attendence</h5>
@@ -31,41 +31,42 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="code">Day <p-sortIcon field="code"></p-sortIcon></th>
-                        <th pSortableColumn="name">Month <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="price">Year <p-sortIcon field="price"></p-sortIcon></th>
-                        <th pSortableColumn="category">Employee_Name <p-sortIcon field="category"></p-sortIcon></th>
-                        <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                        <th pSortableColumn="Day">Day <p-sortIcon field="Day"></p-sortIcon></th>
+                        <th pSortableColumn="Month">Month <p-sortIcon field="Month"></p-sortIcon></th>
+                        <th pSortableColumn="Year">Year <p-sortIcon field="Year"></p-sortIcon></th>
+                        <th pSortableColumn="Employee_Name">Employee_Name <p-sortIcon field="Employee_Name"></p-sortIcon></th>
+                        <th pSortableColumn="Status">Status <p-sortIcon field="Status"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-product>
+                <ng-template pTemplate="body" let-att>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="att"></p-tableCheckbox>
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Day</span>
-                            {{product.code || product.id}}
+                            {{att.Day}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Month</span>
-                            {{product.name}}
+                            {{att.Month}}
                         </td>
                         <td style="width:14%; min-width:8rem;">
                             <span class="p-column-title">Year</span>
-                            {{product.price | currency:'USD'}}
+                            {{att.Year}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Employee_Name</span>
-                            {{product.category}}
+                            {{att.Employee_Name}}
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Status</span>
-                            <span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span>
+                            <<span class="p-column-title">Status</span>
+                            {{att.Status}}
                         </td>
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editAttendence(att)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteAttendence(att._id)"></button>
                             </div>
                         </td>
                     </tr>
@@ -73,50 +74,34 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="attendenceDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" class="p-fluid">
+        <p-dialog [(visible)]="attendenceDialog" [style]="{width: '450px'}" header="Attendence" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
-                <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
-                
-                <!-- Day Selection -->
                 <div class="field">
                     <label for="day">Day</label>
-                    <select id="day" [(ngModel)]="attendence.day" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.day}">
-                        <option value="" disabled selected>Select Day</option>
-                        <option *ngFor="let day of days" [value]="day">{{ day }}</option>
-                    </select>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.day">Day is required.</small>
+                    <input type="date" pInputText id="name" [(ngModel)]="attendence.Date" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.Date}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.Date">Day is required.</small>
                 </div>
-                
-                <!-- Month Selection -->
                 <div class="field">
                     <label for="month">Month</label>
-                    <select id="month" [(ngModel)]="attendence.month" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.month}">
-                        <option value="" disabled selected>Select Month</option>
-                        <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-                    </select>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.month">Month is required.</small>
+                    <input type="month" pInputText id="name" [(ngModel)]="attendence.Month" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.Month}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.Month">Month is required.</small>
                 </div>
-                
-                <!-- Year Selection -->
                 <div class="field">
                     <label for="year">Year</label>
-                    <select id="year" [(ngModel)]="attendence.year" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.year}">
-                        <option value="" disabled selected>Select Year</option>
-                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-                    </select>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.year">Year is required.</small>
+                    <input type="year" pInputText id="name" [(ngModel)]="attendence.Year" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.Year}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.Year">Year is required.</small>
                 </div>
                 <div class="field">
-                    <label for="Employee_Name">Employee_Name</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="attendence.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.name}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.name">Name is required.</small>
+                    <label for="name">Employee_Name</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="attendence.Name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.Name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.Name">Name is required.</small>
                 </div>
-                
                 <div class="field">
                     <label for="status">Status</label>
-                    <textarea id="status" [(ngModel)]="attendence.status" rows="4" placeholder="Enter status or additional notes..." [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.status}"></textarea>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.status">Status is required.</small>
+                    <input type="text" pInputText id="name" [(ngModel)]="attendence.Status" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.Status}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.Status">Status is required.</small>
                 </div>
+                
             </ng-template>
 
             <ng-template pTemplate="footer">
@@ -125,16 +110,16 @@
             </ng-template>
         </p-dialog>
 
-        <!-- <p-dialog [(visible)]="deleteattendenceDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
                 <span *ngIf="attendence">Are you sure you want to delete <b>{{attendence.name}}</b>?</span>
             </div>
             <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteattendenceDialog = false"></button>
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
                 <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
             </ng-template>
-        </p-dialog> -->
+        </p-dialog>
 
         <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">

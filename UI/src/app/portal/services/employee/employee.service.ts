@@ -19,4 +19,7 @@ export class EmployeeService {
   updateEmployees(employee){
     return this.httpClient.patch("http://localhost:3000/api/update-employee/"+employee._id,employee);
   }
+  deleteEmployee(id){
+    return this.httpClient.delete("http://localhost:3000/api/delete-employee/"+id);
+  }
 }

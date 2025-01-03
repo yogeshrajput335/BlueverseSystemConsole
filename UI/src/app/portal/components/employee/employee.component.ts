@@ -13,6 +13,8 @@ import { EmployeeService } from '../../services/employee/employee.service';
 })
 export class EmployeeComponent implements OnInit {
 
+  _id:any;
+
   employeeDialog: boolean = false;
 
   deleteProductDialog: boolean = false;
@@ -74,9 +76,9 @@ export class EmployeeComponent implements OnInit {
       this.employeeDialog = true;
   }
 
-  deleteProduct(employee: Employee) {
-      this.deleteProductDialog = true;
-      this.employee = { ...employee };
+  deleteEmployee(_id: any) {
+    this._id = _id;
+    this.deleteProductDialog = true;
   }
 
   confirmDeleteSelected() {
@@ -87,10 +89,11 @@ export class EmployeeComponent implements OnInit {
   }
 
   confirmDelete() {
-    //   this.deleteProductDialog = false;
-    //   this.products = this.products.filter(val => val.id !== this.product.id);
-    //   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-    //   this.product = {};
+      this.deleteProductDialog = false;
+      this.employeeService.deleteEmployee(this._id).subscribe((data:any) => {
+        this.loadGrid();
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Employee Deleted', life: 3000 });
+      });
   }
 
   hideDialog() {

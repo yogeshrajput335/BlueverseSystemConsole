@@ -3,6 +3,8 @@ import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
+import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee/employee.service';
 
 @Component({
   selector: 'app-employee',
@@ -11,15 +13,15 @@ import { ProductService } from 'src/app/demo/service/product.service';
 })
 export class EmployeeComponent implements OnInit {
 
-  productDialog: boolean = false;
+  employeeDialog: boolean = false;
 
   deleteProductDialog: boolean = false;
 
   deleteProductsDialog: boolean = false;
 
-  products: Product[] = [];
+  employees: Employee[] = [];
 
-  product: Product = {};
+  employee: Employee = {};
 
   selectedProducts: Product[] = [];
 
@@ -31,10 +33,12 @@ export class EmployeeComponent implements OnInit {
 
   rowsPerPageOptions = [5, 10, 20];
 
-  constructor(private productService: ProductService, private messageService: MessageService) { }
+  constructor(private productService: ProductService, private messageService: MessageService,
+    private employeeService: EmployeeService
+  ) { }
 
   ngOnInit() {
-      this.productService.getProducts().then(data => this.products = data);
+    this.loadGrid();
 
       this.cols = [
           { field: 'product', header: 'Product' },
@@ -44,85 +48,89 @@ export class EmployeeComponent implements OnInit {
           { field: 'inventoryStatus', header: 'Status' }
       ];
 
-      this.statuses = [
-          { label: 'INSTOCK', value: 'instock' },
-          { label: 'LOWSTOCK', value: 'lowstock' },
-          { label: 'OUTOFSTOCK', value: 'outofstock' }
-      ];
+    //   this.statuses = [
+    //       { label: 'INSTOCK', value: 'instock' },
+    //       { label: 'LOWSTOCK', value: 'lowstock' },
+    //       { label: 'OUTOFSTOCK', value: 'outofstock' }
+    //   ];
+  }
+
+  loadGrid(){
+    this.employeeService.getAllEmployees().subscribe((data:any) => this.employees = data);
   }
 
   openNew() {
-      this.product = {};
+      this.employee = {};
       this.submitted = false;
-      this.productDialog = true;
+      this.employeeDialog = true;
   }
 
   deleteSelectedProducts() {
       this.deleteProductsDialog = true;
   }
 
-  editProduct(product: Product) {
-      this.product = { ...product };
-      this.productDialog = true;
+  editEmployee(employee: Employee) {
+      this.employee = { ...employee };
+      this.employeeDialog = true;
   }
 
-  deleteProduct(product: Product) {
+  deleteProduct(employee: Employee) {
       this.deleteProductDialog = true;
-      this.product = { ...product };
+      this.employee = { ...employee };
   }
 
   confirmDeleteSelected() {
-      this.deleteProductsDialog = false;
-      this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-      this.selectedProducts = [];
+    //   this.deleteProductsDialog = false;
+    //   this.products = this.products.filter(val => !this.selectedProducts.includes(val));
+    //   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+    //   this.selectedProducts = [];
   }
 
   confirmDelete() {
-      this.deleteProductDialog = false;
-      this.products = this.products.filter(val => val.id !== this.product.id);
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-      this.product = {};
+    //   this.deleteProductDialog = false;
+    //   this.products = this.products.filter(val => val.id !== this.product.id);
+    //   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+    //   this.product = {};
   }
 
   hideDialog() {
-      this.productDialog = false;
+      this.employeeDialog = false;
       this.submitted = false;
   }
 
-  saveProduct() {
+  saveEmployee() {
       this.submitted = true;
 
-      if (this.product.name?.trim()) {
-          if (this.product.id) {
-              // @ts-ignore
-              this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-              this.products[this.findIndexById(this.product.id)] = this.product;
-              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+      if (this.employee.Name?.trim()) {
+          if (this.employee._id) {
+                this.employeeService.updateEmployees(this.employee).subscribe(data=>{
+                this.loadGrid();
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Employee Updated', life: 3000 });
+              })
+              
           } else {
-              this.product.id = this.createId();
-              this.product.code = this.createId();
-              this.product.image = 'product-placeholder.svg';
-              // @ts-ignore
-              this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-              this.products.push(this.product);
-              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+              //this.employee._id = this.createId();
+              this.employeeService.addEmployees(this.employee).subscribe(data=>{
+                this.loadGrid();
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Employee Created', life: 3000 });
+              })
+              
           }
 
-          this.products = [...this.products];
-          this.productDialog = false;
-          this.product = {};
+          //this.products = [...this.products];
+          this.employeeDialog = false;
+          this.employee = {};
       }
   }
 
   findIndexById(id: string): number {
       let index = -1;
-      for (let i = 0; i < this.products.length; i++) {
-          if (this.products[i].id === id) {
-              index = i;
-              break;
-          }
-      }
+    //   for (let i = 0; i < this.products.length; i++) {
+    //       if (this.products[i].id === id) {
+    //           index = i;
+    //           break;
+    //       }
+    //   }
 
       return index;
   }

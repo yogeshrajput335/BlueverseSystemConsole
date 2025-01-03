@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeavesComponent } from './leaves.component';
+import { PayRollComponent } from './pay-roll.component';
 
-describe('LeavesComponent', () => {
-  let component: LeavesComponent;
-  let fixture: ComponentFixture<LeavesComponent>;
+describe('PayRollComponent', () => {
+  let component: PayRollComponent;
+  let fixture: ComponentFixture<PayRollComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LeavesComponent]
+      imports: [PayRollComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(LeavesComponent);
+    fixture = TestBed.createComponent(PayRollComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

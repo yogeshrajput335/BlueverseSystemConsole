@@ -3,6 +3,9 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const employees = require('./routes/employees');
+const payrolls = require('./routes/payrolls');
+const users = require('./routes/userids');
+
 var cors = require('cors')
 const mongoString = process.env.DATABASE_URL;
 
@@ -23,7 +26,9 @@ let corsOptions = {
 }
 app.use(cors(corsOptions))
 app.use(express.json());
-app.use('/api', employees)
+app.use('/api', employees),
+    app.use('/api', payrolls),
+    app.use('/api', usersids);
 
 
 app.listen(3000, () => {

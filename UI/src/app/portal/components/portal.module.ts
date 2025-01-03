@@ -18,9 +18,12 @@ import { DialogModule } from 'primeng/dialog';
 import { EmployeeComponent } from './employee/employee.component';
 import { UserComponent } from './user/user.component';
 import { AttendenceComponent } from './attendence/attendence.component';
-import { LeavesComponent } from '../component/leaves/leaves.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeService } from '../services/employee/employee.service';
+import { NgModel } from '@angular/forms';
+import { PayRollComponent } from './pay-roll/pay-roll.component';
+import { UserService } from '../services/user.service';
+import { PayrollService } from '../services/payroll/payroll.service';
 
 @NgModule({
     imports: [
@@ -43,7 +46,7 @@ import { EmployeeService } from '../services/employee/employee.service';
         InputNumberModule,
         DialogModule
     ],
-    declarations:[EmployeeComponent,UserComponent,AttendenceComponent,LeavesComponent],
-    providers:[EmployeeService]
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent],
+    providers: [EmployeeService, UserService, PayrollService]
 })
 export class PortalModule { }

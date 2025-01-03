@@ -20,7 +20,7 @@ export class AttendenceComponent {
   
     deleteProductsDialog: boolean = false;
   
-    attendence: Attendence[] = [];
+    attendences: Attendence[] = [];
   
     attendence: Attendence = {};
   

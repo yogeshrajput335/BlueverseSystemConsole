@@ -1,5 +1,5 @@
 export interface Attendence {
-    name: any;
+    name?: any;
     _id?: string;
     Day?: string;
     Month?: string;

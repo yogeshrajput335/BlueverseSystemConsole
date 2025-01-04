@@ -44,7 +44,7 @@ export class AttendenceComponent implements OnInit{
 //   years = Array.from({ length: 101 }, (_, i) => 1925 + i); // Example range from 1925 to 2025
     
     
-    constructor(private productService: ProductService,
+    constructor(
          private messageService: MessageService,
         private attendenceService: AttendenceService
     ) { }
@@ -67,7 +67,7 @@ export class AttendenceComponent implements OnInit{
         // ];
     }
     loadGrid(){
-        this.attendenceService.getAllAttendence().subscribe((data:any) => this.attendence = data);
+        this.attendenceService.getAllAttendence().subscribe((data:any) => this.attendences = data);
       }
     openNew() {
         this.attendence = {};

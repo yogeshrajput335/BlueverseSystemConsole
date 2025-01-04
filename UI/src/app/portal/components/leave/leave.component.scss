@@ -1,0 +1,48 @@
+.p-dialog-footer .p-button-text {
+    display: inline-block;
+    margin: 0 5px;
+}
+.submit-button {
+    background-color: #4caf50; /* Green background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Padding for the button */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Inline-block styling */
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margins around the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  .name-input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #ccc; /* Default border color */
+  }
+  
+  .name-input:focus {
+    border-color: #4caf50; /* Green border on focus */
+    outline: none;
+  }
+  
+  .error-border {
+    border-color: #e53935; /* Red border for error */
+    background-color: #ffebee; /* Light red background */
+  }
+  
+  .valid-border {
+    border-color: #4caf50; /* Green border for valid input */
+    background-color: #e8f5e9; /* Light green background */
+  }
+  
+  .error-message {
+    color: #e53935; /* Red text for error message */
+    font-size: 14px;
+  }
+    

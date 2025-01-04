@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const employees = require('./routes/employees');
 const attendence = require('./routes/attendence');
+const leave=require('./routes/leaves')
 
 var cors = require('cors')
 const mongoString = process.env.DATABASE_URL;
@@ -27,6 +28,7 @@ app.use(cors(corsOptions))
 app.use(express.json());
 app.use('/api', employees)
 app.use('/api',attendence )
+app.use('/api', leave)
 
 
 app.listen(3000, () => {

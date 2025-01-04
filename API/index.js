@@ -5,9 +5,7 @@ const mongoose = require('mongoose');
 const employees = require('./routes/employees');
 const leave=require('./routes/leaves')
 
-
 var cors = require('cors');
-const leave = require('./Leave/leave');
 const mongoString = process.env.DATABASE_URL;
 
 mongoose.connect(mongoString);

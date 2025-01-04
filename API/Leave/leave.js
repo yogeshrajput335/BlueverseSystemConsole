@@ -14,7 +14,7 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String
     },
-    Fromdata: {
+    Fromdate: {
         required: true,
         type: String
     },

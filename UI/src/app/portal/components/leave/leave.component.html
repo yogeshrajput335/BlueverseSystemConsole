@@ -17,7 +17,7 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="leave" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['Name','Gender']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="leaves" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['Name','Gender']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Manage leave</h5>
@@ -82,53 +82,35 @@
 
         <p-dialog [(visible)]="leaveDialog" [style]="{width: '500px'}" header="Leave Details" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
-                <div class="field">
+                  <div class="field">
                     <label for="name">Name</label>
-                    <input
-                      type="text"
-                      pInputText
-                      id="name"
-                      [(ngModel)]="leave.Name"
-                      required
-                      autofocus
-                      [ngClass]="{
-                        'ng-invalid ng-dirty error-border': submitted && !leave.Name,
-                        'valid-border': leave.Name
-                      }"
-                      class="name-input"
-                    />
-                    <small
-                      class="error-message"
-                      *ngIf="submitted && !leave.Name"
-                    >
-                      Name is required.
-                    </small>
-                  </div>
-                  
+                    <input type="text" pInputText id="name" [(ngModel)]="leave.Name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Name">Name is required.</small>
+                </div>
                 <div class="field">
-                    <label for="name">Leavetype</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="Leave.Leavetype" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Leave.Leavetype}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !Leave.Leavetype"> Reason is required.</small>
+                    <label for="leavetype">Leave Type</label>
+                    <input type="text" pInputText id="leavetype" [(ngModel)]="leave.Leavetype" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Leavetype}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Leavetype"> Reason is required.</small>
                 </div>
                 <div class="field">
                     <label for="name">Reason</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="Reason.reason" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Reason.reason}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !Reason.reason"> Reason is required.</small>
+                    <input type="text" pInputText id="name" [(ngModel)]="leave.Reason" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Reason}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Reason"> Reason is required.</small>
                 </div>
                 <div class="field">
-                    <label for="name">Fromdate</label>
-                    <input type="date" pInputText id="name" [(ngModel)]="Leave.Fromdate" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Leave.Fromdate}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !Leave.Fromdate">.Fromdate is required.</small>
+                    <label for="name">From Date</label>
+                    <input type="date" pInputText id="name" [(ngModel)]="leave.Fromdate" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Fromdate}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Fromdate">From date is required.</small>
                 </div>
                 <div class="field">
-                    <label for="name">Todate</label>
-                    <input type="date" pInputText id="name" [(ngModel)]="Leave.Todate" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Leave.Todate}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !Leave.Todate">.Todate is required.</small>
+                    <label for="name">To Date</label>
+                    <input type="date" pInputText id="name" [(ngModel)]="leave.Todate" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Todate}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Todate">Todate is required.</small>
                 </div>
                 <div class="field">
                     <label for="name">Status</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="Leave.Status" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && !Leave.Status}" class="submit-button"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !Leave.Status">Status is required.</small>
+                    <input type="text" pInputText id="name" [(ngModel)]="leave.Status" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && !leave.Status}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Status">Status is required.</small>
                   </div>
             </ng-template>
 

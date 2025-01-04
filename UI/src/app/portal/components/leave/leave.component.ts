@@ -14,15 +14,15 @@ import { Leave } from '../../models/leave';
 export class LeaveComponent {
    _id:any;
   
-    // leaveDialog: boolean = false;
-    leaveDialog:boolean = true;
+    leaveDialog: boolean = false;
+    
     deleteProductDialog: boolean = false;
   
     deleteProductsDialog: boolean = false;
   
-    leave:Leave [] = [];
+    leaves:Leave [] = [];
   
-    leaves: Leave = {};
+    leave: Leave = {};
   
     selectedProducts: Product[] = [];
   
@@ -57,11 +57,11 @@ export class LeaveComponent {
     }
   
     loadGrid(){
-      this.leaveService.getAllLeave().subscribe((data:any) => this.leave = data);
+      this.leaveService.getAllLeave().subscribe((data:any) => this.leaves = data);
     }
   
     openNew() {
-        this.leaves = {};
+        this.leave = {};
         this.submitted = false;
         this.leaveDialog = true;
     }
@@ -71,7 +71,7 @@ export class LeaveComponent {
     }
   
     editLeave(leave: Leave) {
-        this.leaves = { ...leave };
+        this.leave = { ...leave };
         this.leaveDialog = true;
     }
   
@@ -103,8 +103,8 @@ export class LeaveComponent {
     saveLeave() {
         this.submitted = true;
   
-        if (this.leaves.Name?.trim()) {
-            if (this.leaves._id) {
+        if (this.leave.Name?.trim()) {
+            if (this.leave._id) {
                   this.leaveService.updateLeaves(this.leave).subscribe(data=>{
                   this.loadGrid();
                   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Leave Updated', life: 3000 });
@@ -121,7 +121,7 @@ export class LeaveComponent {
   
             //this.products = [...this.products];
             this.leaveDialog = false;
-            this.leaves= {};
+            this.leave= {};
         }
     }
   

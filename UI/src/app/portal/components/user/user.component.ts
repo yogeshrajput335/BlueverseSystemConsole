@@ -110,36 +110,6 @@ export class UserComponent implements OnInit {
         this.userDialog = false;
         this.submitted = false;
     }
-    // saveUser() {
-    //     this.submitted = true;
-
-    //     if (this.user.userName?.trim() && this.user.emailId?.trim() && this.user.password?.trim()) {
-    //         console.log('Saving user:', this.user); // Add this
-    //         if (this.user._id) {
-    //             this.userService.updateUser(this.user).subscribe(
-    //                 () => {
-    //                     this.loadGrid();
-    //                     this.messageService.add({
-    //                         severity: 'success',
-    //                         summary: 'Successful',
-    //                         detail: 'User Updated',
-    //                         life: 3000,
-    //                     });
-    //                 },
-    //             );
-    //         } else {
-    //             this.userService.addUser(this.user).subscribe(
-    //                 () => {
-    //                     this.loadGrid();
-    //                     this.messageService.add({
-    //                         severity: 'success',
-    //                         summary: 'Successful',
-    //                         detail: 'User Created',
-    //                         life: 3000,
-    //                     });
-
-    //                 });
-    //         }
     saveUser() {
         this.submitted = true;
 

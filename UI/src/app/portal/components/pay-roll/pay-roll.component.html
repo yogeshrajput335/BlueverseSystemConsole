@@ -45,9 +45,10 @@
                         <th pSortableColumn="Month">SatringDays <p-sortIcon field="Month"></p-sortIcon></th>
                         <th pSortableColumn="Year">EndingDays <p-sortIcon field="Year"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="TotalDays">Total days <p-sortIcon field="TotalDays"></p-sortIcon></th>
                         <th pSortableColumn="WorkingDays">Working days <p-sortIcon field="WorkingDays"></p-sortIcon>
                         </th>
+                        <th pSortableColumn="TotalDays">Total days <p-sortIcon field="TotalDays"></p-sortIcon></th>
+
                         <th></th>
                     </tr>
                 </ng-template>
@@ -80,7 +81,7 @@
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success mr-2" (click)="editPayroll(pay)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                    (click)="deleteProduct(product)"></button>
+                                    (click)="deletePayroll(pay._id)"></button>
                             </div>
                         </td>
                     </tr>
@@ -112,9 +113,11 @@
                         required.</small>
                 </div>
                 <div class="field">
-                    <label for="description">Working Days</label>
-                    <textarea id="description" pInputTextarea [(ngModel)]="payroll.WorkingDays" required rows="3"
-                        cols="20"></textarea>
+                    <label for="name">Working Days</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="payroll.WorkingDays" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.WorkingDays}" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.WorkingDays">Total days is
+                        required.</small>
                 </div>
                 <div class="field">
                     <label for="name">Total days</label>

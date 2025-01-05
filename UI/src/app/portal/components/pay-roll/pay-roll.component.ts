@@ -56,7 +56,7 @@ export class PayRollComponent implements OnInit {
   }
 
   loadGrid() {
-    this.payrollService.getAllPayroll().subscribe((data: any) => this.payrolls = data);
+    this.payrollService.getAllPayroll().subscribe((data: Payroll[]) => this.payrolls = data);
   }
 
   openNew() {
@@ -75,7 +75,7 @@ export class PayRollComponent implements OnInit {
   }
 
   deletePayroll(_id: any) {
-    this._id = _id
+    this._id = _id;
     this.deleteProductDialog = true;
 
   }
@@ -86,24 +86,24 @@ export class PayRollComponent implements OnInit {
     //   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
     //   this.selectedProducts = [];
   }
-
   confirmDelete() {
     this.deleteProductDialog = false;
-    this.payrollService.deletePayroll(this._id).subscribe(
-      (data: any) => {
+    if (this._id) {
+      this.payrollService.deletePayroll(this._id).subscribe(() => {
         this.loadGrid();
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Payroll Deleted', life: 3000 });
-      },
-      (error) => {
-        console.error('Error deleting payroll:', error);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Payroll Deletion Failed',
-          life: 3000
-        });
-      }
-    );
+      });
+    }
+    (error) => {
+      console.error('Error deleting payroll:', error);
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Could not delete payroll',
+        life: 3000,
+      });
+
+    }
   }
 
 

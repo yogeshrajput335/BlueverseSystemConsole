@@ -56,11 +56,8 @@ import { ClientService } from '../services/client/client.service';
         DialogModule
     ],
  
-    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,CandidateComponent],
-    providers: [EmployeeService, UserService, PayrollService,LeaveService,CandidateService]
-
-    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,ClientComponent],
-    providers: [EmployeeService, UserService, PayrollService,LeaveService,ClientService]
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,CandidateComponent,ClientComponent],
+    providers: [EmployeeService, UserService, PayrollService,LeaveService,CandidateService,ClientService]
 
 })
 export class PortalModule { }

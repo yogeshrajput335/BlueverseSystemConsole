@@ -80,13 +80,13 @@ export class AttendenceComponent implements OnInit{
     }
   
     editAttendence(attendence: Attendence) {
-        this.attendence = { ...this.attendence };
+        this.attendence = { ...attendence };
         this.attendenceDialog = true;
     }
   
-    deleteAttendence(attendence: Attendence){
+    deleteAttendence(_id: any) {
+        this._id = _id;
         this.deleteProductDialog = true;
-        this.attendence = { ...this.attendence };
     }
   
     confirmDeleteSelected() {

@@ -1,5 +1,5 @@
 const express = require('express');
-const Model = require('../Leave/leave');
+const Model = require('../models/leave');
 
 const router = express.Router()
 //Post Method

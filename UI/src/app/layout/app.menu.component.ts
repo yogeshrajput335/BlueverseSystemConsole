@@ -28,8 +28,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Attendence', icon: 'pi pi-fw pi-bookmark', routerLink: ['/portal/attendence'] },
                     { label: 'Payroll', icon: 'pi pi-fw pi-table', routerLink: ['/portal/payroll'] },
                     { label: 'Leave', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/leave'] },
-                    { label: 'Candidate', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/candidate'] }
-                 
+                    { label: 'Candidate', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/candidate'] },
                     { label: 'Client', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/client'] },
 
 

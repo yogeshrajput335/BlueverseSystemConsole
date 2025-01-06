@@ -29,7 +29,10 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Payroll', icon: 'pi pi-fw pi-table', routerLink: ['/portal/payroll'] },
                     { label: 'Leave', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/leave'] },
                     { label: 'Candidate', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/candidate'] }
-                   
+                 
+                    { label: 'Client', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/client'] },
+
+
                 ]
             },
             {

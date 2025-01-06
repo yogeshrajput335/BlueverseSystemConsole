@@ -21,14 +21,14 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="users" [columns]="cols" responsiveLayout="scroll" [rows]="10"
-                [globalFilterFields]="['userName','emailId']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]"
+            <p-table #dt [value]="payrolls" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['Name','Month']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]"
                 [showCurrentPageReport]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Manage Employee User</h5>
+                        <h5 class="m-0">Manage Employees Payroll</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."
@@ -41,34 +41,47 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="userName">UserName <p-sortIcon field="userName"></p-sortIcon></th>
-                        <th pSortableColumn="emailId">Email ID <p-sortIcon field="emailId"></p-sortIcon></th>
-                        <th pSortableColumn="Password">Password <p-sortIcon field="Password"></p-sortIcon></th>
+                        <th pSortableColumn="Name">Name <p-sortIcon field="Name"></p-sortIcon></th>
+                        <th pSortableColumn="Month">SatringDays <p-sortIcon field="Month"></p-sortIcon></th>
+                        <th pSortableColumn="Year">EndingDays <p-sortIcon field="Year"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="WorkingDays">Working days <p-sortIcon field="WorkingDays"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="TotalDays">Total days <p-sortIcon field="TotalDays"></p-sortIcon></th>
+
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-user>
+                <ng-template pTemplate="body" let-pay>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="user"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="pay"></p-tableCheckbox>
                         </td>
-                        <td style="width:20%; min-width:10rem;"><span class="p-column-title">UserName</span>
-                            {{user.userName}}
-                        </td>
-                        <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Email ID</span>
-                            {{user.emailId}}
+                        <td style="width:20%; min-width:10rem;"><span class="p-column-title">Name</span>
+                            {{pay.Name}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Password</span>
-                            {{user.Password}}
+                            <span class="p-column-title">Month</span>
+                            {{pay.Month}}
+                        </td>
+                        <td style="width:20%; min-width:8rem;">
+                            <span class="p-column-title">year</span>
+                            {{pay.Year}}
+                        </td>
+                        <td style="width:20%; min-width:8rem;">
+                            <span class="p-column-title">Working days</span>
+                            {{pay.WorkingDays}}
+                        </td>
+                        <td style="width:20%; min-width:10rem;">
+                            <span class="p-column-title">Total days</span>
+                            {{pay.TotalDays}}
                         </td>
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2" (click)="editUser(user)"></button>
+                                    class="p-button-rounded p-button-success mr-2" (click)="editPayroll(pay)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                    (click)="deleteUser(user._id)"></button>
+                                    (click)="deletePayroll(pay._id)"></button>
                             </div>
                         </td>
                     </tr>
@@ -76,26 +89,42 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="userDialog" [style]="{width: '500px'}" header="userDetails" [modal]="true"
+        <p-dialog [(visible)]="payrollDialog" [style]="{width: '500px'}" header="payroll Details" [modal]="true"
             class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
-                    <label for="userName">UserName</label>
-                    <input type="text" pInputText id="userName" [(ngModel)]="user.userName" required autofocus
-                        [ngClass]="{'ng-invalid ng-dirty': submitted && !user.userName}" />
-                    <small *ngIf="submitted && !user.userName">UserName is required.</small>
+                    <label for="name">Name</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="payroll.Name" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.Name}" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.Name">Name is required.</small>
                 </div>
                 <div class="field">
-                    <label for="emailId">Email</label>
-                    <input type="email" pInputText id="emailId" [(ngModel)]="user.emailId" required
-                        [ngClass]="{'ng-invalid ng-dirty': submitted && !user.emailId}" />
-                    <small *ngIf="submitted && !user.emailId">Email is required.</small>
+                    <label class="mb-3">SatringDays</label>
+                    <input type="date" pInputText id="name" [(ngModel)]="payroll.Month" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.Month}" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.Month">month is
+                        required.</small>
                 </div>
                 <div class="field">
-                    <label for="password">Password</label>
-                    <input type="password" pInputText id="password" [(ngModel)]="user.password" required
-                        [ngClass]="{'ng-invalid ng-dirty': submitted && !user.password}" />
-                    <small *ngIf="submitted && !user.password">Password is required.</small>
+                    <label for="name">EndingDays</label>
+                    <input type="date" pInputText id="name" [(ngModel)]="payroll.Year" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.Year}" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.Year">year is
+                        required.</small>
+                </div>
+                <div class="field">
+                    <label for="name">Working Days</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="payroll.WorkingDays" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.WorkingDays}" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.WorkingDays">Total days is
+                        required.</small>
+                </div>
+                <div class="field">
+                    <label for="name">Total days</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="payroll.TotalDays" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.TotalDays}" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.TotalDays">Total days is
+                        required.</small>
                 </div>
 
             </ng-template>
@@ -104,14 +133,14 @@
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
                     (click)="hideDialog()"></button>
                 <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-                    (click)="saveUser()"></button>
+                    (click)="savePayroll()"></button>
             </ng-template>
         </p-dialog>
 
         <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="user">Are you sure you want to delete <b>{{user.userName}}</b>?</span>
+                <span *ngIf="payroll">Are you sure you want to delete <b>{{payroll.Name}}</b>?</span>
             </div>
             <ng-template pTemplate="footer">
                 <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"

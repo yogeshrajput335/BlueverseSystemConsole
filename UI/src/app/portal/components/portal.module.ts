@@ -20,7 +20,10 @@ import { UserComponent } from './user/user.component';
 import { AttendenceComponent } from './attendence/attendence.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeService } from '../services/employee/employee.service';
-import { AttendenceService } from '../services/attendence/attendence.service';
+import { NgModel } from '@angular/forms';
+import { PayRollComponent } from './pay-roll/pay-roll.component';
+import { UserService } from '../services/user/user.service';
+import { PayrollService } from '../services/payroll/payroll.service';
 import { LeaveComponent } from './leave/leave.component';
 import { LeaveService } from '../services/leave/leave.service';
 
@@ -45,7 +48,7 @@ import { LeaveService } from '../services/leave/leave.service';
         InputNumberModule,
         DialogModule
     ],
-    declarations:[EmployeeComponent,UserComponent,AttendenceComponent,LeaveComponent],
-    providers:[EmployeeService,AttendenceService,LeaveService]
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent],
+    providers: [EmployeeService, UserService, PayrollService,LeaveService]
 })
 export class PortalModule { }

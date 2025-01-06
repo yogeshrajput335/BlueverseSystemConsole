@@ -20,6 +20,7 @@ import { UserComponent } from './user/user.component';
 import { AttendenceComponent } from './attendence/attendence.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeService } from '../services/employee/employee.service';
+import { AttendenceService } from '../services/attendence/attendence.service';
 import { LeaveComponent } from './leave/leave.component';
 import { LeaveService } from '../services/leave/leave.service';
 
@@ -45,6 +46,6 @@ import { LeaveService } from '../services/leave/leave.service';
         DialogModule
     ],
     declarations:[EmployeeComponent,UserComponent,AttendenceComponent,LeaveComponent],
-    providers:[EmployeeService,LeaveService]
+    providers:[EmployeeService,AttendenceService,LeaveService]
 })
 export class PortalModule { }

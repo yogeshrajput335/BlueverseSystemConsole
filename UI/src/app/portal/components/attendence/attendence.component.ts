@@ -3,22 +3,27 @@ import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
+import { AttendenceService } from '../../services/attendence/attendence.service';
+import { Attendence } from '../../models/attendence';
 
 @Component({
   selector: 'app-attendence',
   templateUrl: './attendence.component.html',
   styleUrl: './attendence.component.scss'
 })
-export class AttendenceComponent {
-  productDialog: boolean = false;
+export class AttendenceComponent implements OnInit{
+
+    _id:any;
+    
+    attendenceDialog: boolean = false;
   
     deleteProductDialog: boolean = false;
   
     deleteProductsDialog: boolean = false;
   
-    products: Product[] = [];
+    attendences: Attendence[] = [];
   
-    product: Product = {};
+    attendence: Attendence = {};
   
     selectedProducts: Product[] = [];
   
@@ -29,12 +34,24 @@ export class AttendenceComponent {
     statuses: any[] = [];
   
     rowsPerPageOptions = [5, 10, 20];
-  
-    constructor(private productService: ProductService, private messageService: MessageService) { }
-  
+
+    // Arrays for day, month, year
+//   days = Array.from({ length: 31 }, (_, i) => i + 1);
+//   months = [
+//     'January', 'February', 'March', 'April', 'May', 'June',
+//     'July', 'August', 'September', 'October', 'November', 'December'
+//   ];
+//   years = Array.from({ length: 101 }, (_, i) => 1925 + i); // Example range from 1925 to 2025
+    
+    
+    constructor(
+         private messageService: MessageService,
+        private attendenceService: AttendenceService
+    ) { }
+    
     ngOnInit() {
-        this.productService.getProducts().then(data => this.products = data);
-  
+        
+        this.loadGrid();
         this.cols = [
             { field: 'product', header: 'Product' },
             { field: 'price', header: 'Price' },
@@ -43,85 +60,86 @@ export class AttendenceComponent {
             { field: 'inventoryStatus', header: 'Status' }
         ];
   
-        this.statuses = [
-            { label: 'INSTOCK', value: 'instock' },
-            { label: 'LOWSTOCK', value: 'lowstock' },
-            { label: 'OUTOFSTOCK', value: 'outofstock' }
-        ];
+        // this.statuses = [
+        //     { label: 'INSTOCK', value: 'instock' },
+        //     { label: 'LOWSTOCK', value: 'lowstock' },
+        //     { label: 'OUTOFSTOCK', value: 'outofstock' }
+        // ];
     }
-  
+    loadGrid(){
+        this.attendenceService.getAllAttendence().subscribe((data:any) => this.attendences = data);
+      }
     openNew() {
-        this.product = {};
+        this.attendence = {};
         this.submitted = false;
-        this.productDialog = true;
+        this.attendenceDialog = true;
     }
   
     deleteSelectedProducts() {
         this.deleteProductsDialog = true;
     }
   
-    editProduct(product: Product) {
-        this.product = { ...product };
-        this.productDialog = true;
+    editAttendence(attendence: Attendence) {
+        this.attendence = { ...this.attendence };
+        this.attendenceDialog = true;
     }
   
-    deleteProduct(product: Product) {
+    deleteAttendence(attendence: Attendence){
         this.deleteProductDialog = true;
-        this.product = { ...product };
+        this.attendence = { ...this.attendence };
     }
   
     confirmDeleteSelected() {
-        this.deleteProductsDialog = false;
-        this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-        this.selectedProducts = [];
+        // this.deleteProductsDialog = false;
+        // this.products = this.products.filter(val => !this.selectedProducts.includes(val));
+        // this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+        // this.selectedProducts = [];
     }
   
     confirmDelete() {
         this.deleteProductDialog = false;
-        this.products = this.products.filter(val => val.id !== this.product.id);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-        this.product = {};
+        this.attendenceService.deleteAttendence(this._id).subscribe((data:any) => {
+            this.loadGrid();
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Attendence Deleted', life: 3000 });
+        });
     }
   
     hideDialog() {
-        this.productDialog = false;
+        this.attendenceDialog = false;
         this.submitted = false;
     }
   
-    saveProduct() {
+    saveAttendence() {
         this.submitted = true;
   
-        if (this.product.name?.trim()) {
-            if (this.product.id) {
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                this.products[this.findIndexById(this.product.id)] = this.product;
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+            if (this.attendence.Employee_Name?.trim()) {
+                if (this.attendence._id) {
+                      this.attendenceService.updateAttendence(this.attendence).subscribe(data=>{
+                      this.loadGrid();
+                      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Attendence Updated', life: 3000 });
+                    })
             } else {
-                this.product.id = this.createId();
-                this.product.code = this.createId();
-                this.product.image = 'product-placeholder.svg';
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                this.products.push(this.product);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+                this.attendenceService.addAttendence(this.attendence).subscribe(data=>{
+                    this.loadGrid();
+                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Attendence Created', life: 3000 });
+                  })
             }
   
-            this.products = [...this.products];
-            this.productDialog = false;
-            this.product = {};
+            // this.products = [...this.products];
+            this.attendenceDialog = false;
+            this.attendence = {};
         }
     }
-  
+
+
     findIndexById(id: string): number {
         let index = -1;
-        for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === id) {
-                index = i;
-                break;
-            }
-        }
+        // for (let i = 0; i < this.products.length; i++) {
+        //     if (this.products[i].id === id) {
+        //         index = i;
+        //         break;
+        //     }
+        // }
   
         return index;
     }
@@ -139,6 +157,6 @@ export class AttendenceComponent {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
     }
   }
-  
+
 
 

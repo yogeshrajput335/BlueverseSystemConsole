@@ -5,6 +5,7 @@ import { UserComponent } from './user/user.component';
 import { AttendenceComponent } from './attendence/attendence.component';
 import { PayRollComponent } from './pay-roll/pay-roll.component';
 import { LeaveComponent } from './leave/leave.component';
+import { CandidateComponent } from './candidate/candidate.component';
 
 @NgModule({
     imports: [RouterModule.forChild([
@@ -13,7 +14,9 @@ import { LeaveComponent } from './leave/leave.component';
         { path: 'attendence', component: AttendenceComponent },
         { path: 'payroll', component: PayRollComponent },
         { path: 'leave', component: LeaveComponent},
+        {path: 'candidate', component: CandidateComponent},
         { path: '**', redirectTo: '/notfound' }
+
     ])],
     exports: [RouterModule]
 })

@@ -7,8 +7,10 @@ const payrolls = require('./routes/payrolls');
 const userids = require('./routes/userids');
 const attendence = require('./routes/attendence');
 const leave=require('./routes/leaves');
+const candidates=require('./routes/candidate');
 
-var cors = require('cors')
+var cors = require('cors');
+const candidate = require('./models/candidate');
 const mongoString = process.env.DATABASE_URL;
 
 mongoose.connect(mongoString);
@@ -33,7 +35,7 @@ app.use('/api', payrolls);
 app.use('/api', userids);
 app.use('/api', attendence);
 app.use('/api', leave);
-
+app.use('/api', candidates);
 
 app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)

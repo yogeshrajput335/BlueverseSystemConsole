@@ -26,6 +26,8 @@ import { UserService } from '../services/user/user.service';
 import { PayrollService } from '../services/payroll/payroll.service';
 import { LeaveComponent } from './leave/leave.component';
 import { LeaveService } from '../services/leave/leave.service';
+import { CandidateService } from '../services/candidate/candidate.service';
+import { CandidateComponent } from './candidate/candidate.component';
 
 @NgModule({
     imports: [
@@ -48,7 +50,7 @@ import { LeaveService } from '../services/leave/leave.service';
         InputNumberModule,
         DialogModule
     ],
-    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent],
-    providers: [EmployeeService, UserService, PayrollService,LeaveService]
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,CandidateComponent],
+    providers: [EmployeeService, UserService, PayrollService,LeaveService,CandidateService]
 })
 export class PortalModule { }

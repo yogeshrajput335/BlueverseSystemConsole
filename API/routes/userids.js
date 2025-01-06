@@ -1,5 +1,5 @@
 const express = require('express');
-const Model = require('../Userid/userid'); // Ensure this matches your actual export
+const Model = require('../models/userid'); // Ensure this matches your actual export
 
 const router = express.Router();
 

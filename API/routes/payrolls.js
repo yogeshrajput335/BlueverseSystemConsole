@@ -1,5 +1,5 @@
 const express = require('express');
-const Model = require('../Payroll/payroll');
+const Model = require('../models/payroll');
 
 
 

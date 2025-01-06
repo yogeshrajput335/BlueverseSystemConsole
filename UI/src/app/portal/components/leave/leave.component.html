@@ -1,4 +1,4 @@
-<p>leave works!</p>
+<!-- <p>leave works!</p> -->
 <div class="grid">
     <div class="col-12">
         <div class="card px-6 py-6">
@@ -33,10 +33,10 @@
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
                         <th pSortableColumn="Name">Name <p-sortIcon field="Name"></p-sortIcon></th>
-                        <th pSortableColumn="Leavetype">Leavetype <p-sortIcon field="Leavetype"></p-sortIcon></th>
+                        <th pSortableColumn="Leavetype">Leave Type <p-sortIcon field="Leavetype"></p-sortIcon></th>
                         <th pSortableColumn="Reason">Reason <p-sortIcon field="Reason"></p-sortIcon></th>
-                        <th pSortableColumn="Fromdate">Fromdate<p-sortIcon field="Fromdate"></p-sortIcon></th>
-                        <th pSortableColumn="Todate">Todate<p-sortIcon field="Todate"></p-sortIcon></th>
+                        <th pSortableColumn="Fromdate">Form Date<p-sortIcon field="Fromdate"></p-sortIcon></th>
+                        <th pSortableColumn="Todate">To Date<p-sortIcon field="Todate"></p-sortIcon></th>
                         <th pSortableColumn="Status">Status<p-sortIcon field="Status"></p-sortIcon></th>
                         <th></th>
                     </tr>
@@ -98,7 +98,7 @@
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Reason"> Reason is required.</small>
                 </div>
                 <div class="field">
-                    <label for="name" class="custom-label">From Date</label>
+                    <label for="name" class="custom-label">Form Date</label>
                     <input type="date" pInputText id="name" [(ngModel)]="leave.Fromdate" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Fromdate}"/>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Fromdate">From date is required.</small>
                 </div>

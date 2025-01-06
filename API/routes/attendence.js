@@ -1,5 +1,5 @@
 const express = require('express');
-const Model = require('../Attendence/attendence');
+const attendence = require('../models/attendence');
 
 const router = express.Router()
 //Post Method

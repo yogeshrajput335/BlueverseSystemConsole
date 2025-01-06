@@ -6,7 +6,8 @@ const employees = require('./routes/employees');
 const payrolls = require('./routes/payrolls');
 const userids = require('./routes/userids');
 const attendence = require('./routes/attendence');
-const leave=require('./routes/leaves');
+const leave = require('./routes/leaves');
+const curds = require('./routes/curds');
 
 var cors = require('cors')
 const mongoString = process.env.DATABASE_URL;
@@ -33,6 +34,7 @@ app.use('/api', payrolls);
 app.use('/api', userids);
 app.use('/api', attendence);
 app.use('/api', leave);
+app.use('/api', curds)
 
 
 app.listen(3000, () => {

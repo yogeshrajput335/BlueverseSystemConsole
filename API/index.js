@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const employees = require('./routes/employees');
 const payrolls = require('./routes/payrolls');
 const userids = require('./routes/userids');
+const attendence = require('./routes/attendence');
+const leave=require('./routes/leaves');
 
 var cors = require('cors')
 const mongoString = process.env.DATABASE_URL;
@@ -24,11 +26,13 @@ const app = express();
 let corsOptions = {
     origin: ['http://localhost:4200'],
 }
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use('/api', employees),
-    app.use('/api', payrolls),
-    app.use('/api', userids);
+app.use('/api', employees);
+app.use('/api', payrolls);
+app.use('/api', userids);
+app.use('/api', attendence);
+app.use('/api', leave);
 
 
 app.listen(3000, () => {

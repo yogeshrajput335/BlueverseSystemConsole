@@ -97,12 +97,6 @@
                         [ngClass]="{'ng-invalid ng-dirty': submitted && !user.password}" />
                     <small *ngIf="submitted && !user.password">Password is required.</small>
                 </div>
-                <!-- <div class="field">
-                    <label for="name">Email</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="user.emailId" required
-                        [ngClass]="{'ng-invalid ng-dirty': submitted && !user.emailId}" />
-                    <small *ngIf="submitted && !user.emailId">Email is required.</small>
-                </div> -->
             </ng-template>
 
             <ng-template pTemplate="footer">

@@ -41,9 +41,9 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="userName">UserName <p-sortIcon field="userName"></p-sortIcon></th>
+                        <th pSortableColumn="userName">User name <p-sortIcon field="userName"></p-sortIcon></th>
                         <th pSortableColumn="emailId">Email ID <p-sortIcon field="emailId"></p-sortIcon></th>
-                        <th pSortableColumn="Password">Password <p-sortIcon field="Password"></p-sortIcon></th>
+                        <th pSortableColumn="password">Password <p-sortIcon field="password"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
@@ -61,7 +61,7 @@
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Password</span>
-                            {{user.Password}}
+                            {{user.password}}
                         </td>
                         <td>
                             <div class="flex">
@@ -80,10 +80,10 @@
             class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
-                    <label for="userName">UserName</label>
+                    <label for="userName">User name</label>
                     <input type="text" pInputText id="userName" [(ngModel)]="user.userName" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty': submitted && !user.userName}" />
-                    <small *ngIf="submitted && !user.userName">UserName is required.</small>
+                    <small *ngIf="submitted && !user.userName">Username is required.</small>
                 </div>
                 <div class="field">
                     <label for="emailId">Email</label>
@@ -92,12 +92,17 @@
                     <small *ngIf="submitted && !user.emailId">Email is required.</small>
                 </div>
                 <div class="field">
-                    <label for="password">Password</label>
-                    <input type="password" pInputText id="password" [(ngModel)]="user.password" required
+                    <label for="Password">Password</label>
+                    <input type="password" pInputText id="Password" [(ngModel)]="user.password" required
                         [ngClass]="{'ng-invalid ng-dirty': submitted && !user.password}" />
                     <small *ngIf="submitted && !user.password">Password is required.</small>
                 </div>
-
+                <!-- <div class="field">
+                    <label for="name">Email</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="user.emailId" required
+                        [ngClass]="{'ng-invalid ng-dirty': submitted && !user.emailId}" />
+                    <small *ngIf="submitted && !user.emailId">Email is required.</small>
+                </div> -->
             </ng-template>
 
             <ng-template pTemplate="footer">

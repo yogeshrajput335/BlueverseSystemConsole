@@ -42,12 +42,12 @@
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
                         <th pSortableColumn="Name">Name <p-sortIcon field="Name"></p-sortIcon></th>
-                        <th pSortableColumn="Month">SatringDays <p-sortIcon field="Month"></p-sortIcon></th>
-                        <th pSortableColumn="Year">EndingDays <p-sortIcon field="Year"></p-sortIcon>
+                        <th pSortableColumn="Month">Satring Days <p-sortIcon field="Month"></p-sortIcon></th>
+                        <th pSortableColumn="Year">Ending Days <p-sortIcon field="Year"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="WorkingDays">Working days <p-sortIcon field="WorkingDays"></p-sortIcon>
+                        <th pSortableColumn="WorkingDays">Working Days <p-sortIcon field="WorkingDays"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="TotalDays">Total days <p-sortIcon field="TotalDays"></p-sortIcon></th>
+                        <th pSortableColumn="TotalDays">Total Days <p-sortIcon field="TotalDays"></p-sortIcon></th>
 
                         <th></th>
                     </tr>
@@ -69,11 +69,11 @@
                             {{pay.Year}}
                         </td>
                         <td style="width:20%; min-width:8rem;">
-                            <span class="p-column-title">Working days</span>
+                            <span class="p-column-title">Working Days</span>
                             {{pay.WorkingDays}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Total days</span>
+                            <span class="p-column-title">Total Days</span>
                             {{pay.TotalDays}}
                         </td>
                         <td>
@@ -99,14 +99,14 @@
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.Name">Name is required.</small>
                 </div>
                 <div class="field">
-                    <label class="mb-3">SatringDays</label>
+                    <label class="mb-3">Satring Days</label>
                     <input type="date" pInputText id="name" [(ngModel)]="payroll.Month" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.Month}" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.Month">month is
                         required.</small>
                 </div>
                 <div class="field">
-                    <label for="name">EndingDays</label>
+                    <label for="name">Ending Days</label>
                     <input type="date" pInputText id="name" [(ngModel)]="payroll.Year" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.Year}" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.Year">year is
@@ -116,11 +116,11 @@
                     <label for="name">Working Days</label>
                     <input type="text" pInputText id="name" [(ngModel)]="payroll.WorkingDays" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.WorkingDays}" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.WorkingDays">Total days is
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.WorkingDays">Working days is
                         required.</small>
                 </div>
                 <div class="field">
-                    <label for="name">Total days</label>
+                    <label for="name">Total Days</label>
                     <input type="text" pInputText id="name" [(ngModel)]="payroll.TotalDays" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.TotalDays}" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !payroll.TotalDays">Total days is

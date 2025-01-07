@@ -5,6 +5,8 @@ import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user/user.service';
+import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee/employee.service';
 @Component({
     selector: 'app-user',
     templateUrl: './user.component.html',
@@ -17,6 +19,8 @@ export class UserComponent implements OnInit {
     deleteProductDialog: boolean = false;
 
     deleteProductsDialog: boolean = false;
+
+    employees: Employee[]=[];
 
     users: User[] = [];
 
@@ -33,10 +37,11 @@ export class UserComponent implements OnInit {
     rowsPerPageOptions = [5, 10, 20];
 
     constructor(private productService: ProductService, private messageService: MessageService,
-        private userService: UserService
+        private userService: UserService, private empService:EmployeeService
     ) { }
 
     ngOnInit() {
+        this.loadEmployees();
         this.loadGrid();
 
         this.cols = [
@@ -54,12 +59,16 @@ export class UserComponent implements OnInit {
         //   ];
     }
 
+    loadEmployees(){
+        this.empService.getAllEmployees().subscribe((data: User[]) => this.employees = data);
+    }
+
     loadGrid() {
         this.userService.getAllUser().subscribe((data: User[]) => this.users = data);
     }
 
     openNew() {
-        this.user = { userName: '', emailId: '', password: '' };
+        this.user = { userName: '', emailId: '', password: '',employeeId:'' };
         this.submitted = false;
         this.userDialog = true;
     }
@@ -112,7 +121,7 @@ export class UserComponent implements OnInit {
     }
     saveUser() {
         this.submitted = true;
-
+        console.log(this.user)
         if (this.user.userName?.trim()) {
             if (this.user._id) {
                 this.userService.updateUser(this.user).subscribe(data => {

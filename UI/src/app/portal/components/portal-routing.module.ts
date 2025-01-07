@@ -7,15 +7,23 @@ import { PayRollComponent } from './pay-roll/pay-roll.component';
 import { LeaveComponent } from './leave/leave.component';
 import { CurdComponent } from './curd/curd.component';
 
+import { CandidateComponent } from './candidate/candidate.component';
+
+import { ClientComponent } from './client/client.component';
+
+
 @NgModule({
     imports: [RouterModule.forChild([
         { path: 'employee', component: EmployeeComponent },
         { path: 'user', component: UserComponent },
         { path: 'attendence', component: AttendenceComponent },
         { path: 'payroll', component: PayRollComponent },
-        { path: 'leave', component: LeaveComponent },
         { path: 'curd', component: CurdComponent },
+        { path: 'leave', component: LeaveComponent},
+        {path: 'candidate', component: CandidateComponent},
+        { path: 'client', component: ClientComponent},
         { path: '**', redirectTo: '/notfound' }
+
     ])],
     exports: [RouterModule]
 })

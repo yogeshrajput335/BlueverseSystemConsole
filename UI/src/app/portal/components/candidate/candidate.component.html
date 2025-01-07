@@ -16,10 +16,10 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="employees" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['Name','Gender']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="candidates" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['Name','EmailId']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Manage Employees</h5>
+                        <h5 class="m-0">Manage candidates</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
@@ -32,36 +32,36 @@
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
                         <th pSortableColumn="Name">Name <p-sortIcon field="Name"></p-sortIcon></th>
-                        <th pSortableColumn="Gender">Gender <p-sortIcon field="Gender"></p-sortIcon></th>
                         <th pSortableColumn="PhoneNumber">Phone number <p-sortIcon field="PhoneNumber"></p-sortIcon></th>
                         <th pSortableColumn="EmailId">Email ID <p-sortIcon field="EmailId"></p-sortIcon></th>
+                        <th pSortableColumn="Skills">Skills <p-sortIcon field="Skills"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-emp>
+                <ng-template pTemplate="body" let-can>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="emp"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="can"></p-tableCheckbox>
                         </td>
                         <td style="width:20%; min-width:10rem;"><span class="p-column-title">Name</span>
-                            {{emp.Name}}
-                        </td>
-                        <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Gender</span>
-                            {{emp.Gender}}
+                            {{can.Name}}
                         </td>
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Phone Number</span>
-                            {{emp.PhoneNumber}}
+                            {{can.PhoneNumber}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Email ID</span>
-                            {{emp.EmailId}}
+                            {{can.EmailId}}
+                        </td>
+                        <td style="width:20%; min-width:10rem;">
+                            <span class="p-column-title">Skills</span>
+                            {{can.Skills}}
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editEmployee(emp)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteEmployee(emp._id)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editCandidate(can)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCandidate(can._id)"></button>
                             </div>
                         </td>
                     </tr>
@@ -69,52 +69,66 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="employeeDialog" [style]="{width: '500px'}" header="Employee Details" [modal]="true" class="p-fluid">
+        <p-dialog [(visible)]="candidateDialog" [style]="{width: '500px'}" header="Candidate Details" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
                     <label for="name">Name</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="employee.Name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.Name}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !employee.Name">Name is required.</small>
+                    <input type="text" pInputText id="name" [(ngModel)]="candidate.Name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !candidate.Name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !candidate.Name">Name is required.</small>
                 </div>
                 <div class="field">
-                    <label class="mb-3">Gender</label>
-                    <div class="formgrid grid">
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="gen1" name="gender" value="Male" [(ngModel)]="employee.Gender"></p-radioButton>
-                            <label for="gen1">Male</label>
-                        </div>
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="gen2" name="gender" value="Female" [(ngModel)]="employee.Gender"></p-radioButton>
-                            <label for="gen2">Female</label>
-                        </div>
+                    <label for="phone">Phone Number</label>
+                    <div style="display: flex; align-items: center;">
+                        <select  [(ngModel)]="candidate.CountryCode"  id="countryCode"  class="country-code-dropdown"  required [ngClass]="{'ng-invalid ng-dirty' : submitted && !candidate.CountryCode}">
+                            <option value="+91">India (+91)</option>
+                            <option value="+1">USA (+1)</option>
+                            <option value="+44">UK (+44)</option>
+                        </select>
+                        <input  type="text" pInputText id="phone" [(ngModel)]="candidate.PhoneNumber" required autofocus  [ngClass]="{'ng-invalid ng-dirty' : submitted && !candidate.PhoneNumber}"  placeholder="Enter phone number"  style="margin-left: 8px;" />
                     </div>
-                </div>
-                <div class="field">
-                    <label for="name">Phone Number</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="employee.PhoneNumber" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.PhoneNumber}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !employee.PhoneNumber">Phone Number is required.</small>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && (!candidate.PhoneNumber || !candidate.CountryCode)">
+                        Phone Number and Country Code are required.
+                    </small>
                 </div>
                 <div class="field">
                     <label for="name">Email</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="employee.EmailId" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.EmailId}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !employee.EmailId">Email Address is required.</small>
+                    <input type="text" pInputText id="name" [(ngModel)]="candidate.EmailId" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !candidate.EmailId}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !candidate.EmailId">Email Address is required.</small>
                 </div>
                 <div class="field">
-                    <label for="description">Address</label>
-                    <textarea id="description" pInputTextarea [(ngModel)]="employee.Address" required rows="3" cols="20"></textarea>
+                    <label for="description">Skills</label>
+                    <textarea id="description" pInputTextarea [(ngModel)]="candidate.Skills" required rows="3" cols="20"></textarea>
                 </div>
             </ng-template>
 
             <ng-template pTemplate="footer">
-                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveEmployee()"></button>
-            </ng-template>
+                <!-- Cancel Button -->
+                <button 
+                  pButton 
+                  pRipple 
+                  label="Cancel" 
+                  icon="pi pi-times" 
+                  class="transparent-button" 
+                  (click)="hideDialog()">
+                </button>
+              
+                <!-- Save Button -->
+                <button 
+                  pButton 
+                  pRipple 
+                  label="Save" 
+                  icon="pi pi-check" 
+                  class="transparent-button" 
+                  (click)="saveCandidate()">
+                </button>
+              </ng-template>
+              
         </p-dialog>
 
         <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="employee">Are you sure you want to delete <b>{{employee.Name}}</b>?</span>
+                <span *ngIf="candidate">Are you sure you want to delete <b>{{candidate.Name}}</b>?</span>
             </div>
             <ng-template pTemplate="footer">
                 <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>

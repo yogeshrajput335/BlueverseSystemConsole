@@ -1,18 +1,14 @@
 const express = require('express');
-const Model = require('../models/attendence');
-
+const Model = require('../models/candidate');
 
 const router = express.Router()
 //Post Method
-router.post('/add-attendence', async (req, res) => {
+router.post('/add-candidate', async (req, res) => {
     const data = new Model({
-        Day: req.body.Day,
-        Month: req.body.Month,
-        Year: req.body.Year,
-        Employee_Name: req.body.Employee_Name,
-        Status: req.body.Status
-
-
+        Name: req.body.Name,
+        PhoneNumber: req.body.PhoneNumber,
+        EmailId: req.body.EmailId,
+        Skills: req.body.Skills
     })
 
     try {
@@ -24,7 +20,7 @@ router.post('/add-attendence', async (req, res) => {
     }
 })
 //Get all Method
-router.get('/get-all-attendence', async (req, res) => {
+router.get('/get-all-candidate', async (req, res) => {
     try {
         const data = await Model.find();
         res.json(data)
@@ -35,7 +31,7 @@ router.get('/get-all-attendence', async (req, res) => {
 })
 
 //Get by ID Method
-router.get('/get-one-attendence/:id', async (req, res) => {
+router.get('/get-one-candidate/:id', async (req, res) => {
     try {
         const data = await Model.findById(req.params.id);
         res.json(data)
@@ -46,7 +42,7 @@ router.get('/get-one-attendence/:id', async (req, res) => {
 })
 
 //Update by ID Method
-router.patch('/update-attendence/:id', async (req, res) => {
+router.patch('/update-candidate/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -64,7 +60,7 @@ router.patch('/update-attendence/:id', async (req, res) => {
 })
 
 //Delete by ID Method
-router.delete('/delete-attendence/:id', async (req, res) => {
+router.delete('/delete-candidate/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const data = await Model.findByIdAndDelete(id)

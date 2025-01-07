@@ -2,32 +2,23 @@ const mongoose = require('mongoose');
 const { type } = require('os');
 
 const dataSchema = new mongoose.Schema({
-
-    userName: {
+    Name: {
         required: true,
         type: String
     },
-
-
-    employeeId: {
-        required: true,
-        type: mongoose.Schema.Types.ObjectId
-    },
-
-    emailId: {
+    PhoneNumber: {
         required: true,
         type: String
     },
-    password: {
+    EmailId: {
         required: true,
         type: String
     },
-
-
-
+    Skills: {
+        required: true,
+        type: String
+    }
+ 
 })
 
-
-
-module.exports = mongoose.model('User', dataSchema)
-
+module.exports = mongoose.model('Candidate', dataSchema)

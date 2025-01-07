@@ -28,6 +28,11 @@ import { LeaveComponent } from './leave/leave.component';
 import { LeaveService } from '../services/leave/leave.service';
 import { CurdService } from '../services/Curd/curd.service';
 import { CurdComponent } from './curd/curd.component';
+import { CandidateService } from '../services/candidate/candidate.service';
+import { CandidateComponent } from './candidate/candidate.component';
+import { ClientComponent } from './client/client.component';
+import { ClientService } from '../services/client/client.service';
+
 
 @NgModule({
     imports: [
@@ -50,7 +55,9 @@ import { CurdComponent } from './curd/curd.component';
         InputNumberModule,
         DialogModule
     ],
-    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent, LeaveComponent, CurdComponent],
-    providers: [EmployeeService, UserService, PayrollService, LeaveService, CurdService]
+
+ 
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,CandidateComponent,ClientComponent,CurdComponent],
+    providers: [EmployeeService, UserService, PayrollService,LeaveService,CandidateService,ClientService,CurdService]
 })
 export class PortalModule { }

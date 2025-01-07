@@ -10,7 +10,8 @@ router.post('/add-leave', async (req, res) => {
         Reason: req.body.Reason,
         Fromdate: req.body.Fromdate,
         Todate: req.body.Todate,
-        Status: req.body.Status
+        Status: req.body.Status,
+        employeeId: req.body.employeeId
     })
 
     try {

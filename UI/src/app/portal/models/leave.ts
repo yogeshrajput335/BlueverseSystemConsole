@@ -6,4 +6,6 @@ export interface Leave {
     Fromdate?: string;
     Todate?: string;
     Status?:string;
+    employeeId?: string;
+    
 }

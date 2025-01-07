@@ -7,6 +7,10 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    employeeId: {
+        required: true,
+        type: mongoose.Schema.Types.ObjectId
+    },
     emailId: {
         required: true,
         type: String

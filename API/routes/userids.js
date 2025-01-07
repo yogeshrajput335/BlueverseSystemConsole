@@ -6,7 +6,8 @@ const router = express.Router();
 // Post Method
 router.post('/add-user', async (req, res) => {
     const data = new Model({
-        userName: req.body.userName,
+        userName: req.body.userName,        
+        employeeId: req.body.employeeId,
         emailId: req.body.emailId,
         password: req.body.password,
     });

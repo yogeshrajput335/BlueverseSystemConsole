@@ -80,6 +80,18 @@
             class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
+                    <label for="status">Employee</label>
+                    <p-dropdown [options]="employees" [(ngModel)]="user.employeeId" optionLabel="Name" optionValue="_id"></p-dropdown>
+                    <!-- <p-dropdown [(ngModel)]="user.employeeId" inputId="employeeId" optionValue="_id" [options]="employees" placeholder="Select">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="user && user.employeeId" [class]="'product-badge status-' + user.employeeId.toString().toLowerCase()">{{user.employeeId}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span>{{option.Name}}</span>
+                        </ng-template>
+                    </p-dropdown> -->
+                </div>
+                <div class="field">
                     <label for="userName">UserName</label>
                     <input type="text" pInputText id="userName" [(ngModel)]="user.userName" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty': submitted && !user.userName}" />

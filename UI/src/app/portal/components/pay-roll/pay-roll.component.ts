@@ -5,7 +5,8 @@ import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Payroll } from '../../models/payroll';
 import { PayrollService } from '../../services/payroll/payroll.service';
-
+import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee/employee.service';
 @Component({
   selector: 'app-pay-roll',
   templateUrl: './pay-roll.component.html',
@@ -18,6 +19,7 @@ export class PayRollComponent implements OnInit {
   deleteProductDialog: boolean = false;
 
   deleteProductsDialog: boolean = false;
+  employees: Employee[] = [];
 
   payrolls: Payroll[] = [];
 
@@ -34,10 +36,11 @@ export class PayRollComponent implements OnInit {
   rowsPerPageOptions = [5, 10, 20];
 
   constructor(private productService: ProductService, private messageService: MessageService,
-    private payrollService: PayrollService
+    private payrollService: PayrollService, private employeeService: EmployeeService
   ) { }
 
   ngOnInit() {
+    this.loadEmployees();
     this.loadGrid();
 
     this.cols = [
@@ -53,6 +56,9 @@ export class PayRollComponent implements OnInit {
     //       { label: 'LOWSTOCK', value: 'lowstock' },
     //       { label: 'OUTOFSTOCK', value: 'outofstock' }
     //   ];
+  }
+  loadEmployees() {
+    this.employeeService.getAllEmployees().subscribe((data: Employee[]) => this.employees = data);
   }
 
   loadGrid() {

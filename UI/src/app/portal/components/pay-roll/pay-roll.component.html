@@ -93,6 +93,13 @@
             class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
+                    <label for="status">Employee</label>
+                    <p-dropdown [options]="employees" [(ngModel)]="payroll.employeeId" optionLabel="Name"
+                        optionValue="_id"></p-dropdown>
+
+                </div>
+
+                <div class="field">
                     <label for="name">Name</label>
                     <input type="text" pInputText id="name" [(ngModel)]="payroll.Name" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !payroll.Name}" />

@@ -82,10 +82,9 @@
 
         <p-dialog [(visible)]="leaveDialog" [style]="{width: '500px'}" header="Leave Details" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
-                  <div class="field">
-                    <label for="name" class="custom-label">Name</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="leave.Name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Name}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Name">Name is required.</small>
+                <div class="field">
+                    <label for="status">Name</label>
+                    <p-dropdown [options]="employees" [(ngModel)]="leave.employeeId" optionLabel="Name" optionValue="_id"></p-dropdown>
                 </div>
                 <div class="field">
                     <label for="leavetype" class="custom-label">Leave Type</label>

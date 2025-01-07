@@ -5,6 +5,9 @@ import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { LeaveService } from '../../services/leave/leave.service';
 import { Leave } from '../../models/leave';
+import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee/employee.service';
+
 
 @Component({
   selector: 'app-leave',
@@ -19,6 +22,8 @@ export class LeaveComponent {
     deleteProductDialog: boolean = false;
   
     deleteProductsDialog: boolean = false;
+
+    employees:Employee[]=[];
   
     leaves:Leave [] = [];
   
@@ -35,10 +40,11 @@ export class LeaveComponent {
     rowsPerPageOptions = [5, 10, 20];
   
     constructor(private productService: ProductService, private messageService: MessageService,
-      private leaveService: LeaveService
+      private leaveService: LeaveService,private employeeService:EmployeeService
     ) { }
   
     ngOnInit() {
+      this.loadEmployees();
       this.loadGrid();
   
         this.cols = [
@@ -55,13 +61,16 @@ export class LeaveComponent {
       //       { label: 'OUTOFSTOCK', value: 'outofstock' }
       //   ];
     }
+    loadEmployees(){
+      this.employeeService.getAllEmployees().subscribe((data:Leave[])=> this.employees=data);
+    }
   
     loadGrid(){
       this.leaveService.getAllLeave().subscribe((data:any) => this.leaves = data);
     }
   
     openNew() {
-        this.leave = {};
+        this.leave = {Name: '', Leavetype: '', Reason: '',Fromdate: '',Todate: '',Status: '',employeeId: ''};
         this.submitted = false;
         this.leaveDialog = true;
     }

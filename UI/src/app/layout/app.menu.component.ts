@@ -25,13 +25,13 @@ export class AppMenuComponent implements OnInit {
                 label: 'Blueverse Systems',
                 items: [
                     { label: 'Employees', icon: 'pi pi-fw pi-id-card', routerLink: ['/portal/employee'] },
-                    { label: 'Users', icon: 'pi pi-fw pi-check-square', routerLink: ['/portal/user'] },
-                    { label: 'Attendence', icon: 'pi pi-fw pi-bookmark', routerLink: ['/portal/attendence'] },
-                    { label: 'Payroll', icon: 'pi pi-fw pi-table', routerLink: ['/portal/payroll'] },
-                    { label: 'Leave', icon: 'pi pi-fw pi-circle', routerLink: ['/portal/leave'] },
-                    { label: 'Candidate', icon: 'pi pi-fw pi-box', routerLink: ['/portal/candidate'] },
-                    { label: 'Client', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/client'] },
-                   { label: 'Project', icon: 'pi pi-fw pi-pencil', routerLink: ['/portal/curd'] }
+                    { label: 'Users', icon: 'pi pi-fw pi-users', routerLink: ['/portal/user'] },
+                    { label: 'Attendence', icon: 'pi pi-fw pi-calendar', routerLink: ['/portal/attendence'] },
+                    { label: 'Payroll', icon: 'pi pi-fw pi-money-bill', routerLink: ['/portal/payroll'] },
+                    { label: 'Leave', icon: 'pi pi-fw pi-at', routerLink: ['/portal/leave'] },
+                    { label: 'Candidate', icon: 'pi pi-fw pi-user', routerLink: ['/portal/candidate'] },
+                    { label: 'Client', icon: 'pi pi-fw pi-user-plus', routerLink: ['/portal/client'] },
+                    { label: 'Project', icon: 'pi pi-fw pi-building', routerLink: ['/portal/curd'] }
 
 
 

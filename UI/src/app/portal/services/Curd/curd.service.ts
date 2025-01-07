@@ -11,6 +11,7 @@ export class CurdService {
   getAllCurd() {
     return this.httpClient.get("http://localhost:3000/api/get-all-curd");
   }
+
   addCurd(curd) {
     return this.httpClient.post("http://localhost:3000/api/add-curd", curd);
   }

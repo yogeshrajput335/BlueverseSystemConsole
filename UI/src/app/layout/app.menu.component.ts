@@ -29,7 +29,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Attendence', icon: 'pi pi-fw pi-bookmark', routerLink: ['/portal/attendence'] },
                     { label: 'Payroll', icon: 'pi pi-fw pi-table', routerLink: ['/portal/payroll'] },
                     { label: 'Leave', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/leave'] },
-                    { label: 'Curd', icon: 'pi pi-fw pi-pencil', routerLink: ['/portal/curd'] },
+                    { label: 'Project', icon: 'pi pi-fw pi-pencil', routerLink: ['/portal/curd'] },
                 ]
             },
             {
@@ -97,12 +97,12 @@ export class AppMenuComponent implements OnInit {
                             }
                         ]
                     },
-                    // {
-                    //     label: 'Crud',
-                    //     icon: 'pi pi-fw pi-pencil',
-                    //     routerLink: ['/pages/crud']
-                    // },
-                    { label: 'Curd', icon: 'pi pi-fw pi-pencil', routerLink: ['/portal/curd'] },
+                    {
+                        label: 'Crud',
+                        icon: 'pi pi-fw pi-pencil',
+                        routerLink: ['/pages/crud']
+                    },
+
                     {
                         label: 'Timeline',
                         icon: 'pi pi-fw pi-calendar',

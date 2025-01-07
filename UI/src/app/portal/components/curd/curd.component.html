@@ -8,8 +8,8 @@
                         <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
                             (click)="openNew()"></button>
                         <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"
-                            (click)="deleteSelectedCurds()"
-                            [disabled]="!selectedCurds || !selectedCurds.length"></button>
+                            (click)="deleteSelectedProducts()"
+                            [disabled]="!selectedProducts || !selectedProducts.length"></button>
                     </div>
                 </ng-template>
 
@@ -25,10 +25,10 @@
                 [globalFilterFields]="['Name','ClientName']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]"
                 [showCurrentPageReport]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                [(selection)]="selectedCurd" selectionMode="multiple" [rowHover]="true" dataKey="id">
+                [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Manage Employee project</h5>
+                        <h5 class="m-0">Project</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."
@@ -75,6 +75,7 @@
                                     class="p-button-rounded p-button-success mr-2" (click)="editCurd(cud)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                                     (click)="deleteCurd(cud._id)"></button>
+
                             </div>
                         </td>
                     </tr>
@@ -82,7 +83,7 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="curdDialog" [style]="{width: '500px'}" header="Curd Details" [modal]="true"
+        <p-dialog [(visible)]="curdDialog" [style]="{width: '500px'}" header="Project Details" [modal]="true"
             class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
@@ -92,7 +93,7 @@
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !curd.Name">Name is required.</small>
                 </div>
                 <div class="field">
-                    <label for="name">Client Name</label>
+                    <label class="mb-3">Client Name</label>
                     <input type="text" pInputText id="name" [(ngModel)]="curd.ClientName" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !curd.ClientName}" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !curd.ClientName">Client name is
@@ -109,9 +110,10 @@
                     <label for="name">Description</label>
                     <input type="text" pInputText id="name" [(ngModel)]="curd.Description" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !curd.Description}" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !curd.Description">Email Address is
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !curd.Description">Working days is
                         required.</small>
                 </div>
+
             </ng-template>
 
             <ng-template pTemplate="footer">
@@ -122,27 +124,27 @@
             </ng-template>
         </p-dialog>
 
-        <p-dialog [(visible)]="deleteCurdDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
                 <span *ngIf="curd">Are you sure you want to delete <b>{{curd.Name}}</b>?</span>
             </div>
             <ng-template pTemplate="footer">
                 <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
-                    (click)="deleteCurdDialog = false"></button>
+                    (click)="deleteProductDialog = false"></button>
                 <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
                     (click)="confirmDelete()"></button>
             </ng-template>
         </p-dialog>
 
-        <p-dialog [(visible)]="deleteCurdsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span>Are you sure you want to delete selected Curds?</span>
+                <span>Are you sure you want to delete selected products?</span>
             </div>
             <ng-template pTemplate="footer">
                 <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
-                    (click)="deleteCurdsDialog = false"></button>
+                    (click)="deleteProductsDialog = false"></button>
                 <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
                     (click)="confirmDeleteSelected()"></button>
             </ng-template>

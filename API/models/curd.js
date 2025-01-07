@@ -3,22 +3,19 @@ const { type } = require('os');
 
 const dataSchema = new mongoose.Schema({
 
-    userName: {
+    Name: {
         required: true,
         type: String
     },
-
-
-    employeeId: {
-        required: true,
-        type: mongoose.Schema.Types.ObjectId
-    },
-
-    emailId: {
+    ClientName: {
         required: true,
         type: String
     },
-    password: {
+    Status: {
+        required: true,
+        type: String
+    },
+    Description: {
         required: true,
         type: String
     },
@@ -27,7 +24,4 @@ const dataSchema = new mongoose.Schema({
 
 })
 
-
-
-module.exports = mongoose.model('User', dataSchema)
-
+module.exports = mongoose.model('Curd', dataSchema)

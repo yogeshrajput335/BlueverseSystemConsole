@@ -5,6 +5,7 @@ import { UserComponent } from './user/user.component';
 import { AttendenceComponent } from './attendence/attendence.component';
 import { PayRollComponent } from './pay-roll/pay-roll.component';
 import { LeaveComponent } from './leave/leave.component';
+import { CurdComponent } from './curd/curd.component';
 
 import { CandidateComponent } from './candidate/candidate.component';
 
@@ -17,12 +18,10 @@ import { ClientComponent } from './client/client.component';
         { path: 'user', component: UserComponent },
         { path: 'attendence', component: AttendenceComponent },
         { path: 'payroll', component: PayRollComponent },
+        { path: 'curd', component: CurdComponent },
         { path: 'leave', component: LeaveComponent},
-
         {path: 'candidate', component: CandidateComponent},
-
         { path: 'client', component: ClientComponent},
-
         { path: '**', redirectTo: '/notfound' }
 
     ])],

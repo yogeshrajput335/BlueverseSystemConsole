@@ -6,8 +6,12 @@ const employees = require('./routes/employees');
 const payrolls = require('./routes/payrolls');
 const userids = require('./routes/userids');
 const attendence = require('./routes/attendence');
-const leave=require('./routes/leaves');
+const leave = require('./routes/leaves');
+const curds = require('./routes/curds');
 const candidates=require('./routes/candidate');
+const client =require('./routes/client');
+
+
 
 var cors = require('cors');
 const candidate = require('./models/candidate');
@@ -35,8 +39,9 @@ app.use('/api', payrolls);
 app.use('/api', userids);
 app.use('/api', attendence);
 app.use('/api', leave);
+app.use('/api', curds);
 app.use('/api', candidates);
-
+app.use('/api', client);
 
 
 

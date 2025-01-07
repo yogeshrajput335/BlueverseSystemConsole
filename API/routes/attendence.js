@@ -1,6 +1,7 @@
 const express = require('express');
 const Model = require('../models/attendence');
 
+
 const router = express.Router()
 //Post Method
 router.post('/add-attendence', async (req, res) => {

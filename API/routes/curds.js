@@ -1,15 +1,16 @@
+
 const express = require('express');
-const Model = require('../models/userid'); // Ensure this matches your actual export
+const Model = require('../models/curd'); // Ensure this matches your actual export
 
 const router = express.Router();
 
 // Post Method
-router.post('/add-user', async (req, res) => {
+router.post('/add-curd', async (req, res) => {
     const data = new Model({
-        userName: req.body.userName,        
-        employeeId: req.body.employeeId,
-        emailId: req.body.emailId,
-        password: req.body.password,
+        Name: req.body.Name,
+        ClientName: req.body.ClientName,
+        Status: req.body.Status,
+        Description: req.body.Description,
     });
 
     try {
@@ -21,7 +22,7 @@ router.post('/add-user', async (req, res) => {
 });
 
 // Get all Method
-router.get('/get-all-user', async (req, res) => {
+router.get('/get-all-curd', async (req, res) => {
     try {
         const data = await Model.find();
         res.json(data);
@@ -31,7 +32,7 @@ router.get('/get-all-user', async (req, res) => {
 });
 
 // Get by ID Method
-router.get('/get-one-user/:id', async (req, res) => {
+router.get('/get-one-curd/:id', async (req, res) => {
     try {
         const data = await Model.findById(req.params.id);
         res.json(data);
@@ -41,7 +42,7 @@ router.get('/get-one-user/:id', async (req, res) => {
 });
 
 // Update by ID Method
-router.patch('/update-user/:id', async (req, res) => {
+router.patch('/update-curd/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -56,7 +57,7 @@ router.patch('/update-user/:id', async (req, res) => {
 });
 
 // Delete by ID Method
-router.delete('/delete-user/:id', async (req, res) => {
+router.delete('/delete-curd/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const data = await Model.findByIdAndDelete(id);

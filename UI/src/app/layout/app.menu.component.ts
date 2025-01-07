@@ -1,6 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-menu',
@@ -30,6 +31,8 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Leave', icon: 'pi pi-fw pi-circle', routerLink: ['/portal/leave'] },
                     { label: 'Candidate', icon: 'pi pi-fw pi-box', routerLink: ['/portal/candidate'] },
                     { label: 'Client', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/portal/client'] },
+                   { label: 'Project', icon: 'pi pi-fw pi-pencil', routerLink: ['/portal/curd'] }
+
 
 
                 ]
@@ -104,6 +107,7 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-pencil',
                         routerLink: ['/pages/crud']
                     },
+
                     {
                         label: 'Timeline',
                         icon: 'pi pi-fw pi-calendar',

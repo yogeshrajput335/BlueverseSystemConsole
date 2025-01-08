@@ -94,9 +94,11 @@ export class AttendenceComponent implements OnInit{
         this.attendenceDialog = true;
     }
   
-    deleteAttendence(_id: any){
-        this.deleteProductDialog = true;
+
+    deleteAttendence(_id: any) {
         this._id = _id;
+        this.deleteProductDialog = true;
+
     }
   
     confirmDeleteSelected() {

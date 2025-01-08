@@ -7,6 +7,7 @@ const router = express.Router()
 //Post Method
 router.post('/add-payroll', async (req, res) => {
     const data = new Model({
+        employeeId: req.body.employeeId,
         Name: req.body.Name,
         Month: req.body.Month,
         Year: req.body.Year,

@@ -11,6 +11,8 @@ const curds = require('./routes/curds');
 const candidates = require('./routes/candidate');
 const client = require('./routes/client');
 const assesttype = require('./routes/assesttype')
+const Category=require('./routes/category');
+
 
 
 var cors = require('cors');
@@ -42,6 +44,9 @@ app.use('/api', curds);
 app.use('/api', candidates);
 app.use('/api', client);
 app.use('/api', assesttype)
+app.use('/api', Category);
+
+
 
 
 

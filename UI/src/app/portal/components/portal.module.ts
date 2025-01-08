@@ -32,6 +32,8 @@ import { CandidateService } from '../services/candidate/candidate.service';
 import { CandidateComponent } from './candidate/candidate.component';
 import { ClientComponent } from './client/client.component';
 import { ClientService } from '../services/client/client.service';
+import { AssestTypeService } from '../services/assest-type/assest-type.service';
+import { AssestTypeComponent } from './assest-type/assest-type.component';
 
 
 @NgModule({
@@ -56,8 +58,8 @@ import { ClientService } from '../services/client/client.service';
         DialogModule
     ],
 
- 
-    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,CandidateComponent,ClientComponent,CurdComponent],
-    providers: [EmployeeService, UserService, PayrollService,LeaveService,CandidateService,ClientService,CurdService]
+
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent, LeaveComponent, CandidateComponent, ClientComponent, CurdComponent, AssestTypeComponent],
+    providers: [EmployeeService, UserService, PayrollService, LeaveService, CandidateService, ClientService, CurdService, AssestTypeService]
 })
 export class PortalModule { }

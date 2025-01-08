@@ -31,8 +31,8 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Leave', icon: 'pi pi-fw pi-at', routerLink: ['/portal/leave'] },
                     { label: 'Candidate', icon: 'pi pi-fw pi-user', routerLink: ['/portal/candidate'] },
                     { label: 'Client', icon: 'pi pi-fw pi-user-plus', routerLink: ['/portal/client'] },
-                    { label: 'Project', icon: 'pi pi-fw pi-building', routerLink: ['/portal/curd'] }
-
+                    { label: 'Project', icon: 'pi pi-fw pi-building', routerLink: ['/portal/curd'] },
+                    { label: 'Assest Type', icon: 'pi pi-fw pi-sitemap', routerLink: ['/portal/assesttype'] }
 
 
                 ]

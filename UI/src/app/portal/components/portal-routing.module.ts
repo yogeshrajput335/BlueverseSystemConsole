@@ -10,6 +10,7 @@ import { CurdComponent } from './curd/curd.component';
 import { CandidateComponent } from './candidate/candidate.component';
 
 import { ClientComponent } from './client/client.component';
+import { AssestTypeComponent } from './assest-type/assest-type.component';
 
 
 @NgModule({
@@ -19,9 +20,10 @@ import { ClientComponent } from './client/client.component';
         { path: 'attendence', component: AttendenceComponent },
         { path: 'payroll', component: PayRollComponent },
         { path: 'curd', component: CurdComponent },
-        { path: 'leave', component: LeaveComponent},
-        {path: 'candidate', component: CandidateComponent},
-        { path: 'client', component: ClientComponent},
+        { path: 'leave', component: LeaveComponent },
+        { path: 'candidate', component: CandidateComponent },
+        { path: 'client', component: ClientComponent },
+        { path: 'assesttype', component: AssestTypeComponent },
         { path: '**', redirectTo: '/notfound' }
 
     ])],

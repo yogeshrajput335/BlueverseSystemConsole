@@ -6,11 +6,9 @@ import { AttendenceComponent } from './attendence/attendence.component';
 import { PayRollComponent } from './pay-roll/pay-roll.component';
 import { LeaveComponent } from './leave/leave.component';
 import { CurdComponent } from './curd/curd.component';
-
 import { CandidateComponent } from './candidate/candidate.component';
-
 import { ClientComponent } from './client/client.component';
-
+import { LeavetypeComponent } from './leavetype/leavetype.component';
 
 @NgModule({
     imports: [RouterModule.forChild([
@@ -22,6 +20,7 @@ import { ClientComponent } from './client/client.component';
         { path: 'leave', component: LeaveComponent},
         {path: 'candidate', component: CandidateComponent},
         { path: 'client', component: ClientComponent},
+        { path: 'leavetype', component: LeavetypeComponent},
         { path: '**', redirectTo: '/notfound' }
 
     ])],

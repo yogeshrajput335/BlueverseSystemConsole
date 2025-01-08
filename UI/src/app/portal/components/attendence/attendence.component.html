@@ -16,7 +16,7 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="attendences" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['Year','Employee_Name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="attendences" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['Year','Name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Manage Attendence</h5>
@@ -31,10 +31,10 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
+                        <th pSortableColumn="Name">Name <p-sortIcon field="Name"></p-sortIcon></th>
                         <th pSortableColumn="Day">Day <p-sortIcon field="Day"></p-sortIcon></th>
                         <th pSortableColumn="Month">Month <p-sortIcon field="Month"></p-sortIcon></th>
                         <th pSortableColumn="Year">Year <p-sortIcon field="Year"></p-sortIcon></th>
-                        <th pSortableColumn="Employee_Name">Employee Name <p-sortIcon field="Employee_Name"></p-sortIcon></th>
                         <th pSortableColumn="Status">Status <p-sortIcon field="Status"></p-sortIcon></th>
                         <th></th>
                     </tr>
@@ -43,6 +43,10 @@
                     <tr>
                         <td>
                             <p-tableCheckbox [value]="att"></p-tableCheckbox>
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Name</span>
+                            {{att.Name}}
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Day</span>
                             {{att.Day}}
@@ -55,10 +59,7 @@
                             <span class="p-column-title">Year</span>
                             {{att.Year}}
                         </td>
-                        <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Employee Name</span>
-                            {{att.Employee_Name}}
-                        </td>
+                        
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Status</span>
                             <span class="p-column-title">Status</span>
                             {{att.Status}}
@@ -77,6 +78,15 @@
         <p-dialog [(visible)]="attendenceDialog" [style]="{width: '450px'}" header="Attendence" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
+                    <label for="status">Employee</label>
+                    <p-dropdown [options]="employees" [(ngModel)]="attendence.employeeId" optionLabel="Name" optionValue="_id"></p-dropdown>
+                </div>
+                <div class="field">
+                    <label for="Name">Name</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="attendence.Name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.Name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.Name">Name is required.</small>
+                </div>
+                <div class="field">
                     <label for="day">Day</label>
                     <input type="date" pInputText id="name" [(ngModel)]="attendence.Day" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.Day}"/>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.Day">Day is required.</small>
@@ -86,15 +96,11 @@
                     <input type="month" pInputText id="name" [(ngModel)]="attendence.Month" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.Month}"/>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.Month">Month is required.</small>
                 </div>
+                
                 <div class="field">
                     <label for="year">Year</label>
                     <input type="year" pInputText id="name" [(ngModel)]="attendence.Year" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.Year}"/>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.Year">Year is required.</small>
-                </div>
-                <div class="field">
-                    <label for="name">Employee_Name</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="attendence.Employee_Name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !attendence.Employee_Name}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !attendence.Employee_Name">Name is required.</small>
                 </div>
                 <div class="field">
                     <label for="status">Status</label>

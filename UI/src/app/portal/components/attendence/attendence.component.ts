@@ -5,6 +5,8 @@ import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { AttendenceService } from '../../services/attendence/attendence.service';
 import { Attendence } from '../../models/attendence';
+import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee/employee.service';
 
 @Component({
   selector: 'app-attendence',
@@ -20,6 +22,8 @@ export class AttendenceComponent implements OnInit{
     deleteProductDialog: boolean = false;
   
     deleteProductsDialog: boolean = false;
+
+    employees:Employee[] = [];
   
     attendences: Attendence[] = [];
   
@@ -46,11 +50,12 @@ export class AttendenceComponent implements OnInit{
     
     constructor(
          private messageService: MessageService,
-        private attendenceService: AttendenceService
+        private attendenceService: AttendenceService,
+        private  employeeService: EmployeeService
     ) { }
     
     ngOnInit() {
-        
+        this.loadEmployees();
         this.loadGrid();
         this.cols = [
             { field: 'product', header: 'Product' },
@@ -66,6 +71,11 @@ export class AttendenceComponent implements OnInit{
         //     { label: 'OUTOFSTOCK', value: 'outofstock' }
         // ];
     }
+
+    loadEmployees(){
+            this.employeeService.getAllEmployees().subscribe((data: Employee[]) => this.employees = data || []);
+        }
+
     loadGrid(){
         this.attendenceService.getAllAttendence().subscribe((data:any) => this.attendences = data);
       }
@@ -84,9 +94,11 @@ export class AttendenceComponent implements OnInit{
         this.attendenceDialog = true;
     }
   
+
     deleteAttendence(_id: any) {
         this._id = _id;
         this.deleteProductDialog = true;
+
     }
   
     confirmDeleteSelected() {
@@ -96,13 +108,35 @@ export class AttendenceComponent implements OnInit{
         // this.selectedProducts = [];
     }
   
+    // confirmDelete() {
+    //     this.deleteProductDialog = false;
+    //     this.attendenceService.deleteAttendence(this._id).subscribe((data:any) => {
+    //         this.loadGrid();
+    //         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Attendence Deleted', life: 3000 });
+    //     });
+    // }
+
+
+
     confirmDelete() {
         this.deleteProductDialog = false;
-        this.attendenceService.deleteAttendence(this._id).subscribe((data:any) => {
+        if (this._id) {
+          this.attendenceService.deleteAttendence(this._id).subscribe(() => {
             this.loadGrid();
             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Attendence Deleted', life: 3000 });
-        });
-    }
+          });
+        }
+        (error) => {
+          console.error('Error deleting attendence:', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Could not delete attendence',
+            life: 3000,
+          });
+    
+        }
+      }
   
     hideDialog() {
         this.attendenceDialog = false;
@@ -112,7 +146,7 @@ export class AttendenceComponent implements OnInit{
     saveAttendence() {
         this.submitted = true;
   
-            if (this.attendence.Employee_Name?.trim()) {
+            if (this.attendence.Name?.trim()) {
                 if (this.attendence._id) {
                       this.attendenceService.updateAttendence(this.attendence).subscribe(data=>{
                       this.loadGrid();

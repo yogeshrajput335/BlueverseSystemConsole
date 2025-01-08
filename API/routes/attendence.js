@@ -6,10 +6,11 @@ const router = express.Router()
 //Post Method
 router.post('/add-attendence', async (req, res) => {
     const data = new Model({
+        employeeId: req.body.employeeId,
+        Name: req.body.Name,
         Day: req.body.Day,
         Month: req.body.Month,
         Year: req.body.Year,
-        Employee_Name: req.body.Employee_Name,
         Status: req.body.Status
 
 

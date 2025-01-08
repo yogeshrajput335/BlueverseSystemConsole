@@ -13,7 +13,9 @@ import { EmployeeService } from '../../services/employee/employee.service';
     styleUrl: './user.component.scss'
 })
 export class UserComponent implements OnInit {
+    
     _id: any;
+
     userDialog: boolean = false;
 
     deleteProductDialog: boolean = false;

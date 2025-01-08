@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 const { type } = require('os');
 
 const dataSchema = new mongoose.Schema({
+    employeeId: {
+            required: true,
+            type: mongoose.Schema.Types.ObjectId
+        },
+    Name: {
+        required: true,
+        type: String
+    },    
     Day: {
         required: true,
         type: String
@@ -14,10 +22,7 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String
     },
-    Employee_Name: {
-        required: true,
-        type: String
-    },
+    
     Status: {
         required: true,
         type: String

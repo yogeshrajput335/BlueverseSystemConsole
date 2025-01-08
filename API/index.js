@@ -10,11 +10,11 @@ const leave = require('./routes/leaves');
 const curds = require('./routes/curds');
 const candidates=require('./routes/candidate');
 const client =require('./routes/client');
+const Category=require('./routes/category');
 
 
 
 var cors = require('cors');
-const candidate = require('./models/candidate');
 const mongoString = process.env.DATABASE_URL;
 
 mongoose.connect(mongoString);
@@ -42,6 +42,8 @@ app.use('/api', leave);
 app.use('/api', curds);
 app.use('/api', candidates);
 app.use('/api', client);
+app.use('/api', Category);
+
 
 
 

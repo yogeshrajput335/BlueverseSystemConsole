@@ -8,8 +8,10 @@ const userids = require('./routes/userids');
 const attendence = require('./routes/attendence');
 const leave = require('./routes/leaves');
 const curds = require('./routes/curds');
-const candidates=require('./routes/candidate');
-const client =require('./routes/client');
+const candidates = require('./routes/candidate');
+const client = require('./routes/client');
+const assesttype = require('./routes/assesttype')
+const Category=require('./routes/category');
 const leavetype =require('./routes/leavetype');
 
 
@@ -43,7 +45,11 @@ app.use('/api', leave);
 app.use('/api', curds);
 app.use('/api', candidates);
 app.use('/api', client);
+app.use('/api', assesttype)
+app.use('/api', Category);
 app.use('/api', leavetype);
+
+
 
 
 

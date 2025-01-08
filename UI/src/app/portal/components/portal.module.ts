@@ -32,8 +32,13 @@ import { CandidateService } from '../services/candidate/candidate.service';
 import { CandidateComponent } from './candidate/candidate.component';
 import { ClientComponent } from './client/client.component';
 import { ClientService } from '../services/client/client.service';
+import { AssestTypeService } from '../services/assest-type/assest-type.service';
+import { AssestTypeComponent } from './assest-type/assest-type.component';
+import { CategoryService } from '../services/category/category.service';
+import { CategoryComponent } from './category/category.component';
 import { LeavetypeService } from '../services/leavetype/leavetype.service';
 import { LeavetypeComponent } from './leavetype/leavetype.component';
+
 
 
 @NgModule({
@@ -57,9 +62,10 @@ import { LeavetypeComponent } from './leavetype/leavetype.component';
         InputNumberModule,
         DialogModule
     ],
+  
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent, LeaveComponent, CandidateComponent, ClientComponent, CurdComponent, AssestTypeComponent,CategoryComponent,LeavetypeComponent],
+    providers: [EmployeeService, UserService, PayrollService, LeaveService, CandidateService, ClientService, CurdService, AssestTypeService,CategoryService,LeavetypeService]
 
- 
-    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,CandidateComponent,ClientComponent,CurdComponent,LeavetypeComponent],
-    providers: [EmployeeService, UserService, PayrollService,LeaveService,CandidateService,ClientService,CurdService,LeavetypeService]
+
 })
 export class PortalModule { }

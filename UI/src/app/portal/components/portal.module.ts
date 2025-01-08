@@ -36,6 +36,8 @@ import { AssestTypeService } from '../services/assest-type/assest-type.service';
 import { AssestTypeComponent } from './assest-type/assest-type.component';
 import { CategoryService } from '../services/category/category.service';
 import { CategoryComponent } from './category/category.component';
+import { LeavetypeService } from '../services/leavetype/leavetype.service';
+import { LeavetypeComponent } from './leavetype/leavetype.component';
 
 
 
@@ -61,8 +63,9 @@ import { CategoryComponent } from './category/category.component';
         DialogModule
     ],
   
-    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent, LeaveComponent, CandidateComponent, ClientComponent, CurdComponent, AssestTypeComponent,CategoryComponent],
-    providers: [EmployeeService, UserService, PayrollService, LeaveService, CandidateService, ClientService, CurdService, AssestTypeService,CategoryService]
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent, LeaveComponent, CandidateComponent, ClientComponent, CurdComponent, AssestTypeComponent,CategoryComponent,LeavetypeComponent],
+    providers: [EmployeeService, UserService, PayrollService, LeaveService, CandidateService, ClientService, CurdService, AssestTypeService,CategoryService,LeavetypeService]
+
 
 })
 export class PortalModule { }

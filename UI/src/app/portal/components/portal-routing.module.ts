@@ -10,6 +10,7 @@ import { CandidateComponent } from './candidate/candidate.component';
 import { ClientComponent } from './client/client.component';
 import { AssestTypeComponent } from './assest-type/assest-type.component';
 import { CategoryComponent } from './category/category.component';
+import { LeavetypeComponent } from './leavetype/leavetype.component';
 
 
 
@@ -20,11 +21,14 @@ import { CategoryComponent } from './category/category.component';
         { path: 'attendence', component: AttendenceComponent },
         { path: 'payroll', component: PayRollComponent },
         { path: 'curd', component: CurdComponent },
+
         { path: 'leave', component: LeaveComponent },
         { path: 'candidate', component: CandidateComponent },
         { path: 'client', component: ClientComponent },
         { path: 'assesttype', component: AssestTypeComponent },
         {path: 'category', component:CategoryComponent},
+        { path: 'leavetype', component: LeavetypeComponent}, 
+
         { path: '**', redirectTo: '/notfound' }
 
     ])],

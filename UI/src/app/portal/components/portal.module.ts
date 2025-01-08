@@ -32,6 +32,8 @@ import { CandidateService } from '../services/candidate/candidate.service';
 import { CandidateComponent } from './candidate/candidate.component';
 import { ClientComponent } from './client/client.component';
 import { ClientService } from '../services/client/client.service';
+import { CategoryService } from '../services/category/category.service';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
@@ -57,7 +59,7 @@ import { ClientService } from '../services/client/client.service';
     ],
 
  
-    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,CandidateComponent,ClientComponent,CurdComponent],
-    providers: [EmployeeService, UserService, PayrollService,LeaveService,CandidateService,ClientService,CurdService]
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,CandidateComponent,ClientComponent,CurdComponent,CategoryComponent],
+    providers: [EmployeeService, UserService, PayrollService,LeaveService,CandidateService,ClientService,CurdService,CategoryService]
 })
 export class PortalModule { }

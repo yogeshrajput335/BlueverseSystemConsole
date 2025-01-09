@@ -6,24 +6,34 @@
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
-                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+                            (click)="openNew()"></button>
+                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"
+                            (click)="deleteSelectedProducts()"
+                            [disabled]="!selectedProducts || !selectedProducts.length"></button>
                     </div>
                 </ng-template>
 
                 <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import"
+                        chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"
+                        (click)="dt.exportCSV()"></button>
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="leaves" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['Name','Gender']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="leaves" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['Name','Gender']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Manage leave</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."
+                                class="w-full sm:w-auto" />
                         </span>
                     </div>
                 </ng-template>
@@ -71,8 +81,10 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editLeave(leav)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteLeave(leav._id)"></button>
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success mr-2" (click)="editLeave(leav)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    (click)="deleteLeave(leav._id)"></button>
                             </div>
                         </td>
                     </tr>
@@ -80,42 +92,53 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="leaveDialog" [style]="{width: '500px'}" header="Leave Details" [modal]="true" class="p-fluid">
+        <p-dialog [(visible)]="leaveDialog" [style]="{width: '500px'}" header="Leave Details" [modal]="true"
+            class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
                     <label for="status">Name</label>
-                    <p-dropdown [options]="employees" [(ngModel)]="leave.employeeId" optionLabel="Name" optionValue="_id"></p-dropdown>
+                    <p-dropdown [options]="employees" [(ngModel)]="leave.employeeId" optionLabel="Name"
+                        optionValue="_id"></p-dropdown>
                 </div>
                 <div class="field">
                     <label for="leavetype" class="custom-label">Leave Type</label>
-                    <input type="text" pInputText id="leavetype" [(ngModel)]="leave.Leavetype" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Leavetype}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Leavetype"> Reason is required.</small>
+                    <input type="text" pInputText id="leavetype" [(ngModel)]="leave.Leavetype" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Leavetype}" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Leavetype"> Reason is
+                        required.</small>
                 </div>
                 <div class="field">
                     <label for="name" class="custom-label">Reason</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="leave.Reason" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Reason}"/>
+                    <input type="text" pInputText id="name" [(ngModel)]="leave.Reason" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Reason}" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Reason"> Reason is required.</small>
                 </div>
                 <div class="field">
                     <label for="name" class="custom-label">Form Date</label>
-                    <input type="date" pInputText id="name" [(ngModel)]="leave.Fromdate" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Fromdate}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Fromdate">From date is required.</small>
+                    <input type="date" pInputText id="name" [(ngModel)]="leave.Fromdate" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Fromdate}" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Fromdate">From date is
+                        required.</small>
                 </div>
                 <div class="field">
                     <label for="name" class="custom-label">To Date</label>
-                    <input type="date" pInputText id="name" [(ngModel)]="leave.Todate" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Todate}"/>
+                    <input type="date" pInputText id="name" [(ngModel)]="leave.Todate" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !leave.Todate}" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Todate">Todate is required.</small>
                 </div>
                 <div class="field">
                     <label for="name" class="custom-label">Status</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="leave.Status" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && !leave.Status}"/>
+                    <input type="text" pInputText id="name" [(ngModel)]="leave.Status" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty': submitted && !leave.Status}" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !leave.Status">Status is required.</small>
-                  </div>
-                </ng-template>
+                </div>
+            </ng-template>
             <ng-template pTemplate="footer">
-                <button pButton  pRipple label="Cancel" icon="pi pi-times"  class="p-button-outlined p-button-danger"  (click)="hideDialog()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-outlined p-button-success" (click)="saveLeave()"></button>
-              </ng-template>              
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                    (click)="hideDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+                    (click)="saveLeave()"></button>
+            </ng-template>
         </p-dialog>
 
         <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
@@ -124,8 +147,10 @@
                 <span *ngIf="leave">Are you sure you want to delete <b>{{leave.Name}}</b>?</span>
             </div>
             <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
+                    (click)="deleteProductDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
+                    (click)="confirmDelete()"></button>
             </ng-template>
         </p-dialog>
 
@@ -135,8 +160,10 @@
                 <span>Are you sure you want to delete selected products?</span>
             </div>
             <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
+                    (click)="deleteProductsDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
+                    (click)="confirmDeleteSelected()"></button>
             </ng-template>
         </p-dialog>
     </div>

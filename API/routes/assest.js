@@ -1,16 +1,17 @@
 const express = require('express');
-const Model = require('../models/employee');
+const Model = require('../models/assest');
+
+
 
 const router = express.Router()
 //Post Method
-router.post('/add-employee', async (req, res) => {
+router.post('/add-assest', async (req, res) => {
     const data = new Model({
-        Name: req.body.Name,
-        EmailId: req.body.EmailId,
-        Gender: req.body.Gender,
-        Address: req.body.Address,
-        PhoneNumber: req.body.PhoneNumber
-
+        assesttypeId: req.body.assesttypeId,
+        Assetname: req.body.Assetname,
+        Active: req.body.Active,
+        checkbox: req.body.checkbox,
+        Description: req.body.Description
 
     })
 
@@ -22,20 +23,8 @@ router.post('/add-employee', async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 })
-
-router.get('/get-count-employee', async (req, res) => {
-    try {
-        const employees = await Model.find();
-        res.status(200).json({
-            employees,
-            count: employees.length, // Total number of employees
-        });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-})
 //Get all Method
-router.get('/get-all-employee', async (req, res) => {
+router.get('/get-all-assest', async (req, res) => {
     try {
         const data = await Model.find();
         res.json(data)
@@ -44,8 +33,9 @@ router.get('/get-all-employee', async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 })
+
 //Get by ID Method
-router.get('/get-one-employee/:id', async (req, res) => {
+router.get('/get-one-assest/:id', async (req, res) => {
     try {
         const data = await Model.findById(req.params.id);
         res.json(data)
@@ -56,7 +46,7 @@ router.get('/get-one-employee/:id', async (req, res) => {
 })
 
 //Update by ID Method
-router.patch('/update-employee/:id', async (req, res) => {
+router.patch('/update-assest/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -74,7 +64,7 @@ router.patch('/update-employee/:id', async (req, res) => {
 })
 
 //Delete by ID Method
-router.delete('/delete-employee/:id', async (req, res) => {
+router.delete('/delete-assest/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const data = await Model.findByIdAndDelete(id)

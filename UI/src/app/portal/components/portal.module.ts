@@ -11,6 +11,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { RatingModule } from 'primeng/rating';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -38,6 +39,8 @@ import { CategoryService } from '../services/category/category.service';
 import { CategoryComponent } from './category/category.component';
 import { LeavetypeService } from '../services/leavetype/leavetype.service';
 import { LeavetypeComponent } from './leavetype/leavetype.component';
+import { AssestService } from '../services/assest/assest.service';
+import { AssestComponent } from './assest/assest.component';
 
 
 
@@ -60,11 +63,12 @@ import { LeavetypeComponent } from './leavetype/leavetype.component';
         DropdownModule,
         RadioButtonModule,
         InputNumberModule,
-        DialogModule
+        DialogModule,
+        CheckboxModule
     ],
-  
-    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent, LeaveComponent, CandidateComponent, ClientComponent, CurdComponent, AssestTypeComponent,CategoryComponent,LeavetypeComponent],
-    providers: [EmployeeService, UserService, PayrollService, LeaveService, CandidateService, ClientService, CurdService, AssestTypeService,CategoryService,LeavetypeService]
+
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent, LeaveComponent, CandidateComponent, ClientComponent, CurdComponent, AssestTypeComponent, CategoryComponent, LeavetypeComponent, AssestComponent],
+    providers: [EmployeeService, UserService, PayrollService, LeaveService, CandidateService, ClientService, CurdService, AssestTypeService, CategoryService, LeavetypeService, AssestService]
 
 
 })

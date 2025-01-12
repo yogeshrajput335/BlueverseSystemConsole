@@ -11,8 +11,9 @@ const curds = require('./routes/curds');
 const candidates = require('./routes/candidate');
 const client = require('./routes/client');
 const assesttype = require('./routes/assesttype')
-const Category=require('./routes/category');
-const leavetype =require('./routes/leavetype');
+const Category = require('./routes/category');
+const leavetype = require('./routes/leavetype');
+const assest = require('./routes/assest')
 
 
 
@@ -48,7 +49,7 @@ app.use('/api', client);
 app.use('/api', assesttype)
 app.use('/api', Category);
 app.use('/api', leavetype);
-
+app.use('/api', assest);
 
 
 

@@ -5,7 +5,8 @@ import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-menu',
-    templateUrl: './app.menu.component.html'
+    templateUrl: './app.menu.component.html',
+    
 })
 export class AppMenuComponent implements OnInit {
 
@@ -32,11 +33,19 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Candidate', icon: 'pi pi-fw pi-user', routerLink: ['/portal/candidate'] },
                     { label: 'Client', icon: 'pi pi-fw pi-user-plus', routerLink: ['/portal/client'] },
                     { label: 'Project', icon: 'pi pi-fw pi-building', routerLink: ['/portal/curd'] },
-                    {label: 'Category',icon: 'pi pi-fw pi-star-fill',routerLink:['/portal/category'] }
-
-
-
-                ]
+                        {
+                          label: 'Category',
+                          icon: 'pi pi-fw pi-star-fill',
+                          routerLink: ['/portal/category'],  
+                          items: [
+                            {
+                              label: 'Sub Category',
+                              icon: 'pi pi-fw pi-star',
+                              routerLink: ['/portal/sub-category'],  
+                            },
+                          ],
+                        },
+                      ]
             },
             {
                 label: 'UI Components',

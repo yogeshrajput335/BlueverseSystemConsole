@@ -6,11 +6,10 @@ import { AttendenceComponent } from './attendence/attendence.component';
 import { PayRollComponent } from './pay-roll/pay-roll.component';
 import { LeaveComponent } from './leave/leave.component';
 import { CurdComponent } from './curd/curd.component';
-
 import { CandidateComponent } from './candidate/candidate.component';
-
 import { ClientComponent } from './client/client.component';
 import { CategoryComponent } from './category/category.component';
+import { SubCategoryComponent } from './sub-category/sub-category.component';
 
 
 @NgModule({
@@ -24,9 +23,15 @@ import { CategoryComponent } from './category/category.component';
         {path: 'candidate', component: CandidateComponent},
         { path: 'client', component: ClientComponent},
         {path: 'category', component:CategoryComponent},
+        {path: 'sub-category',component:SubCategoryComponent},
         { path: '**', redirectTo: '/notfound' }
 
     ])],
     exports: [RouterModule]
 })
 export class PortalRoutingModule { }
+
+
+
+
+

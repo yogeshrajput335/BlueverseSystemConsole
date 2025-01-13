@@ -34,6 +34,9 @@ import { ClientComponent } from './client/client.component';
 import { ClientService } from '../services/client/client.service';
 import { CategoryService } from '../services/category/category.service';
 import { CategoryComponent } from './category/category.component';
+import { SubCategoryService } from '../services/sub-category/sub-category.service';
+import { SubCategoryComponent } from './sub-category/sub-category.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 @NgModule({
@@ -55,11 +58,12 @@ import { CategoryComponent } from './category/category.component';
         DropdownModule,
         RadioButtonModule,
         InputNumberModule,
-        DialogModule
+        DialogModule,
+        CheckboxModule
     ],
 
  
-    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,CandidateComponent,ClientComponent,CurdComponent,CategoryComponent],
-    providers: [EmployeeService, UserService, PayrollService,LeaveService,CandidateService,ClientService,CurdService,CategoryService]
+    declarations: [EmployeeComponent, UserComponent, AttendenceComponent, PayRollComponent,LeaveComponent,CandidateComponent,ClientComponent,CurdComponent,CategoryComponent,SubCategoryComponent],
+    providers: [EmployeeService, UserService, PayrollService,LeaveService,CandidateService,ClientService,CurdService,CategoryService,SubCategoryService]
 })
 export class PortalModule { }

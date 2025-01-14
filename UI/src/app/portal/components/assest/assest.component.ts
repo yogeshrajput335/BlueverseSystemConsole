@@ -62,36 +62,44 @@ export class AssestComponent implements OnInit {
     this.assestDialog = true;
   }
 
-  deleteAssest(_id: any) {
+  deleteAssest(_id: string) {
     this._id = _id;
     this.deleteAssestDialog = true;
   }
 
   confirmDelete() {
-    this.deleteAssestDialog = false; // Close the dialog
+    // Close the dialog
+    this.deleteAssestDialog = false;
+
+    // Ensure the asset ID is available
     if (this._id) {
+      // Call the delete service
       this.assestService.deleteAssest(this._id).subscribe({
         next: () => {
-          this.loadGrid(); // Reload the table data after deletion
+          // Reload the grid after deletion
+          this.loadGrid();
+
+          // Show success notification
           this.messageService.add({
             severity: 'success',
             summary: 'Successful',
-            detail: 'Asset Deleted',
+            detail: 'Asset deleted successfully.',
             life: 3000,
           });
         },
         error: (err) => {
-          console.error('Error deleting asset:', err); // Log the error
+          // Show error notification
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: 'Could not delete the asset',
+            detail: 'Failed to delete the asset.',
             life: 3000,
           });
         },
       });
     }
   }
+
 
 
 

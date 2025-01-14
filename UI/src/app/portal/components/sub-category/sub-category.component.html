@@ -46,7 +46,7 @@
                             <th pSortableColumn="Active">Active<p-sortIcon field="Active"></p-sortIcon></th>
                             <th pSortableColumn="Homeneeds">Homeneeds<p-sortIcon field="Homeneeds"></p-sortIcon></th>
                             <th pSortableColumn="Employeeid">Employeeid<p-sortIcon field="Employeeid"></p-sortIcon></th>
-    
+                            <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-as1>
@@ -93,6 +93,12 @@
                 <ng-template pTemplate="content">
                     <div class="field">
                         <label for="name">Name</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="subcategory.Name" required autofocus
+                            [ngClass]="{'ng-invalid ng-dirty' : submitted && !subcategory.Name}" />
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !subcategory.Name">Name is required.</small>
+                    </div>
+                    <div class="field">
+                        <label for="name">Employee</label>
                         <p-dropdown [options]="employees" [(ngModel)]="subcategory.employeeId" optionLabel="Name"
                             optionValue="_id"></p-dropdown>
                     </div>
@@ -108,13 +114,13 @@
                         <label class="mb-3">Active</label>
                         <div class="formgrid grid">
                             <div class="field-radiobutton col-6">
-                                <p-radioButton id="ac1" name="Homeneeds" value="Yes"
-                                    [(ngModel)]="subcategory.Homeneeds"></p-radioButton>
+                                <p-radioButton id="ac1" name="active" value="Yes"
+                                    [(ngModel)]="subcategory.Active"></p-radioButton>
                                 <label for="ac1">Yes</label>
                             </div>
                             <div class="field-radiobutton col-6">
                                 <p-radioButton id="ac2" name="active" value="No"
-                                    [(ngModel)]="subcategory.Homeneeds"></p-radioButton>
+                                    [(ngModel)]="subcategory.Active"></p-radioButton>
                                 <label for="ac2">No</label>
                             </div>
                         </div>

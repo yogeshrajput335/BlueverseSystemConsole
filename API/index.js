@@ -11,6 +11,7 @@ const curds = require('./routes/curds');
 const candidates=require('./routes/candidate');
 const client =require('./routes/client');
 const Category=require('./routes/category');
+const subcategory=require('./routes/subcategory');
 
 
 
@@ -43,6 +44,7 @@ app.use('/api', curds);
 app.use('/api', candidates);
 app.use('/api', client);
 app.use('/api', Category);
+app.use('/api', subcategory);
 
 
 

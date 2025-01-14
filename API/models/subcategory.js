@@ -16,7 +16,7 @@ const dataSchema = new mongoose.Schema({
     },
     Homeneeds: {
         required: true,
-        type: String
+        type: [String]
     },
     employeeId: {
             required: true,
